@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar color="primary" >
+    <ion-title>
+      <p align="center">Registration</p>
+    </ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-card>
+    <ion-list>
+        <ion-item>
+          <ion-label position="stacked">Email</ion-label>
+          <ion-input [(ngModel)]="email" placeholder="johnsmith@hotmail.com"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Password</ion-label>
+          <ion-input type="password" [(ngModel)]="password" placeholder="******"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-button (click)="registerEmail()" fill="outline">
+              <ion-icon name="mail-outline"></ion-icon>
+              Register
+          </ion-button>
+          <ion-button (click)="registerGoogle()" fill="outline">
+              <ion-icon name="logo-google" slot="start"></ion-icon>
+              Register with Google
+          </ion-button>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Already have an account?</ion-label>
+          <ion-button routerLink="/login" fill="outline"> Login</ion-button>
+
+        </ion-item>
+
+
+    </ion-list>
+
+</ion-card>
+<ion-content></ion-content>

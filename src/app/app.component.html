@@ -1,0 +1,41 @@
+<ion-app>
+  <ion-split-pane contentId="main-content">
+    <ion-menu contentId="main-content" type="push">
+      <ion-content>
+        <ion-list id="inbox-list">
+
+          <ion-list-header>Track-it</ion-list-header>
+
+          <div *ngFor="let e of events">
+
+            <ion-menu-toggle *ngIf="e.url">
+              <ion-item routerDirection="root" [routerLink]="[e.url]">
+                <ion-label>{{ e.title }}</ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+
+            <ion-item button *ngIf="e.children?.length>0" (click)="e.open = !e.open" lines="none" detail="false"  >
+              <ion-icon name="arrow-forward-outline" *ngIf="!e.open" slot="end"></ion-icon>
+              <ion-icon name="arrow-down-outline" *ngIf="e.open" slot="end"></ion-icon>
+              <ion-label>{{e.title}}</ion-label>
+            </ion-item>
+
+            <ion-list *ngIf="e.open">
+              <ion-menu-toggle>
+                <ion-item *ngFor="let child of e.children" routerDirection="root" [routerLink]="[child.url] " class="child">
+                  <ion-label>{{ child.title }}</ion-label>
+                </ion-item>
+              </ion-menu-toggle>
+            </ion-list>
+
+          </div>
+
+
+        </ion-list>
+
+
+      </ion-content>
+    </ion-menu>
+    <ion-router-outlet id="main-content"></ion-router-outlet>
+  </ion-split-pane>
+</ion-app>

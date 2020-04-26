@@ -1,0 +1,233 @@
+<ion-header>
+  <ion-toolbar color="primary" >
+
+    <ion-button slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-button>
+    <ion-title>
+        <p align="center">Decathlon</p>
+    </ion-title>
+        <ion-button slot="end" (click)="presentPrompt()">
+            <ion-icon name="save-outline" slot="end"></ion-icon>
+                Save
+        </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-card>
+
+
+<!-- List of Input Items -->
+
+<ion-grid class="ion-align-items-center">
+  <ion-row >
+    <ion-col>
+      <p class="columns">Event</p>
+    </ion-col>
+    <ion-col>
+      <p class="columns">Result</p>
+    </ion-col>
+    <ion-col>
+      <p class="columns">Score</p>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="ion-align-items-center">
+      <ion-col >
+          <ion-label>
+            <h2>100m</h2>
+          </ion-label>
+      </ion-col>
+      <ion-col>
+        <ion-input maxlength="6" placeholder="11.00s"  [(ngModel)]="dataIn.hundred"  (ionChange)="updateScore()"></ion-input>
+      </ion-col>
+      <ion-col>
+          <div> {{dataOut.hundred}} </div>
+      </ion-col>
+  </ion-row>
+
+
+    <ion-row class="ion-align-items-center">
+        <ion-col>
+          <ion-label >
+            <h2>Long Jump</h2>
+          </ion-label>
+        </ion-col>
+
+        <ion-col>
+            <ion-input maxlength="4" placeholder="7.00m" [(ngModel)]="dataIn.lj" (ionChange)="updateScore()" ></ion-input>
+        </ion-col>
+
+        <ion-col>
+          <div> {{dataOut.lj}}</div>
+        </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-align-items-center">
+        <ion-col >
+          <ion-label >
+            <h2>Shot Put</h2>
+          </ion-label>
+        </ion-col>
+
+        <ion-col>
+            <ion-input maxlength="5" placeholder="13.50m" [(ngModel)]="dataIn.sp" (ionChange)="updateScore()" ></ion-input>
+        </ion-col>
+
+        <ion-col>
+          <div>{{dataOut.sp}}</div>
+        </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-align-items-center">
+        <ion-col>
+          <ion-label >
+            <h2>High Jump</h2>
+          </ion-label>
+        </ion-col>
+
+        <ion-col>
+            <ion-input maxlength="4" placeholder="1.90m" [(ngModel)]="dataIn.hj" (ionChange)="updateScore()" ></ion-input>
+        </ion-col>
+
+        <ion-col>
+          <div>{{dataOut.hj}}</div>
+        </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-align-items-center">
+        <ion-col>
+          <ion-label >
+            <h2>400m</h2>
+          </ion-label>
+        </ion-col>
+
+        <ion-col>
+            <ion-input maxlength="6" placeholder="50.00s" [(ngModel)]="dataIn.four" (ionChange)="updateScore()" ></ion-input>
+        </ion-col>
+
+        <ion-col>
+          <div>{{dataOut.four}}</div>
+        </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-align-items-center">
+        <ion-col >
+          <ion-label >
+            <h2>110mh</h2>
+          </ion-label>
+        </ion-col>
+
+        <ion-col>
+            <ion-input maxlength="6" placeholder="14.75s" [(ngModel)]="dataIn.hurdles" (ionChange)="updateScore()" ></ion-input>
+        </ion-col>
+
+        <ion-col>
+          <div>{{dataOut.hurdles}}</div>
+        </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-align-items-center">
+        <ion-col>
+          <ion-label >
+            <h2>Discus</h2>
+          </ion-label>
+        </ion-col>
+
+        <ion-col>
+            <ion-input maxlength="5" placeholder="40.00m" [(ngModel)]="dataIn.dt" (ionChange)="updateScore()" ></ion-input>
+        </ion-col>
+
+        <ion-col>
+          <div>{{dataOut.dt}}</div>
+        </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-align-items-center">
+        <ion-col>
+          <ion-label >
+            <h2>Pole Vault</h2>
+          </ion-label>
+        </ion-col>
+
+        <ion-col>
+            <ion-input maxlength="4" placeholder="4.50m" [(ngModel)]="dataIn.pv" (ionChange)="updateScore()" ></ion-input>
+        </ion-col>
+
+        <ion-col>
+          <div>{{dataOut.pv}}</div>
+        </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-align-items-center">
+        <ion-col>
+          <ion-label >
+            <h2>Javelin</h2>
+          </ion-label>
+        </ion-col>
+
+        <ion-col>
+            <ion-input maxlength="5" placeholder="55.00m" [(ngModel)]="dataIn.jt" (ionChange)="updateScore()" ></ion-input>
+        </ion-col>
+
+        <ion-col>
+          <div>{{dataOut.jt}}</div>
+        </ion-col>
+     </ion-row>
+
+     <ion-row class="ion-align-items-center">
+        <ion-col>
+          <ion-label>
+            <h2>1500m</h2>
+          </ion-label>
+        </ion-col>
+
+        <ion-col>
+            <ion-input maxlength="7" placeholder="4:45.00" [(ngModel)]="dataIn.fifteen" (ionBlur)="updateScore()" ></ion-input>
+        </ion-col>
+
+        <ion-col>
+          <div>{{dataOut.fifteen}}</div>
+        </ion-col>
+    </ion-row>
+
+    <ion-row>
+        <ion-col class="ion-text-left"></ion-col>
+        <ion-col>
+            <ion-label >
+                <h2>Day 1:</h2>
+            </ion-label>
+        </ion-col>
+        <ion-col>
+            <div>{{dataOut.dayOneScore}}</div>
+        </ion-col>
+
+    </ion-row>
+    <ion-row>
+        <ion-col class="ion-text-left"></ion-col>
+        <ion-col>
+            <ion-label >
+                <h2>Day 2:</h2>
+            </ion-label>
+        </ion-col>
+        <ion-col>
+            <div>{{dataOut.dayTwoScore}}</div>
+        </ion-col>
+    </ion-row>
+
+    <ion-row>
+        <ion-col class="ion-text-left"></ion-col>
+        <ion-col>
+            <ion-label>
+                <h2>Total Score:</h2>
+            </ion-label>
+        </ion-col>
+        <ion-col>
+            <div>{{dataOut.totalScore}}</div>
+        </ion-col>
+    </ion-row>
+</ion-grid>
+
+</ion-card>
+<ion-content></ion-content>
+
