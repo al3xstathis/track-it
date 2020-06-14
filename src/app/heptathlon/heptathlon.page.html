@@ -1,185 +1,157 @@
+<ion-header translucent="true" collapse>
+    <ion-toolbar>
 
-<ion-header>
-  <ion-toolbar color="primary" >
-    <ion-button slot="start" >
-      <ion-menu-button></ion-menu-button>
-    </ion-button>
-    <ion-title> <p align="center">Heptathlon</p>
-    </ion-title>
-    <ion-button slot="end" (click)="presentPrompt()">
-        <ion-icon name="save-outline" slot="end"></ion-icon>
-        Save
-    </ion-button>
-  </ion-toolbar>
+        <ion-button class="menu" color="none"  slot="start">
+            <ion-menu-button size="large"></ion-menu-button>
+        </ion-button>
+
+        <ion-title class="header">
+            Heptathlon
+        </ion-title>
+
+        <ion-button class="save" *ngIf="!dataIn.id" (click)="presentPrompt()" color="none"  slot="end">
+            Save
+        </ion-button>
+        <ion-button class="save" *ngIf="dataIn.id" (click)="save()" color="none"  slot="end">
+            Save
+        </ion-button>
+
+    </ion-toolbar>
 </ion-header>
 
+<ion-content color="dark" fullscreen>
+    <hr>
 
-<ion-card>
+    <!--If we are editing a saved event then the title of the event should appear at the top-->
+    <ion-title *ngIf="dataIn.id != ''" class="eventTitle">{{dataIn.title}}</ion-title>
+    <hr *ngIf="dataIn.id != ''">
 
-<ion-grid class="ion-text-center">
-  <ion-row>
-    <ion-col>
-      <p>Event</p>
-    </ion-col>
-    <ion-col>
-      <p>Result</p>
-    </ion-col>
-    <ion-col>
-      <p>Score</p>
-    </ion-col>
-  </ion-row>
+    <div class="titles">
+        <div class="event">
+            <a>Event</a>
+        </div>
+        <div class="result">
+            <a>Result</a>
+        </div>
+        <div class="score">
+            <a>Score</a>
+        </div>
+    </div>
 
-  <ion-row class="ion-align-items-center">
-      <ion-col >
-          <ion-label>
-            <h2>100mh</h2>
-          </ion-label>
+    <hr>
 
-      </ion-col>
-      <ion-col >
-        <ion-input maxlength="6" placeholder="14.00"  [(ngModel)]="dataIn.hurdles"  (ionChange)="updateScore()"></ion-input>
-      </ion-col>
+    <div class="calculatorContainer">
 
-      <ion-col>
-          <div> {{dataOut.hurdles}} </div>
-      </ion-col>
-  </ion-row>
-
-
-  <ion-row class="ion-align-items-center">
-        <ion-col>
-          <ion-label>
-            <h2>High Jump</h2>
-          </ion-label>
-        </ion-col>
-
-        <ion-col>
-            <ion-input maxlength="4" placeholder="1.75" [(ngModel)]="dataIn.hj" (ionChange)="updateScore()" ></ion-input>
-        </ion-col>
-
-        <ion-col>
-          <div> {{dataOut.hj}}</div>
-        </ion-col>
-  </ion-row>
-
-    <ion-row class="ion-align-items-center">
-        <ion-col>
-          <ion-label>
-            <h2>Shot Put</h2>
-          </ion-label>
-        </ion-col>
-
-        <ion-col>
-            <ion-input maxlength="5" placeholder="12.00" [(ngModel)]="dataIn.sp" (ionChange)="updateScore()" ></ion-input>
-        </ion-col>
-
-        <ion-col>
-          <div>{{dataOut.sp}}</div>
-        </ion-col>
-  </ion-row>
-
-    <ion-row class="ion-align-items-center">
-        <ion-col>
-          <ion-label>
-            <h2>200m</h2>
-          </ion-label>
-        </ion-col>
-
-        <ion-col>
-            <ion-input maxlength="6" placeholder="24.50" [(ngModel)]="dataIn.two" (ionChange)="updateScore()" ></ion-input>
-        </ion-col>
-
-        <ion-col>
-          <div>{{dataOut.two}}</div>
-        </ion-col>
-  </ion-row>
-
-    <ion-row class="ion-align-items-center">
-        <ion-col>
-          <ion-label>
-            <h2>Long Jump</h2>
-          </ion-label>
-        </ion-col>
-
-        <ion-col>
-            <ion-input maxlength="4" placeholder="5.75" [(ngModel)]="dataIn.lj" (ionChange)="updateScore()" ></ion-input>
-        </ion-col>
-
-        <ion-col>
-          <div>{{dataOut.lj}}</div>
-        </ion-col>
-  </ion-row>
+        <!-- Label divs-->
+        <div class="hurdles-label">
+            <a>100mh</a>
+        </div>
+        <div class="hj-label">
+            <a>High Jump</a>
+        </div>
+        <div class="sp-label">
+            <a>Shot Put</a>
+        </div>
+        <div class="two-label">
+            <a>200m</a>
+        </div>
+        <div class="lj-label">
+            <a>Long Jump</a>
+        </div>
+        <div class="jt-label">
+            <a>Javelin</a>
+        </div>
+        <div class="eight-label">
+            <a>800m</a>
+        </div>
 
 
-    <ion-row class="ion-align-items-center">
-        <ion-col>
-          <ion-label>
-            <h2>Javelin</h2>
-          </ion-label>
-        </ion-col>
-        <ion-col>
-            <ion-input maxlength="5" placeholder="45.00" [(ngModel)]="dataIn.jt" (ionChange)="updateScore()" ></ion-input>
-        </ion-col>
-        <ion-col>
-          <div>{{dataOut.jt}}</div>
-        </ion-col>
-  </ion-row>
+        <!--Input divs-->
 
-    <ion-row class="ion-align-items-center">
-        <ion-col>
-          <ion-label>
-            <h2>800m</h2>
-          </ion-label>
-        </ion-col>
-        <ion-col>
+        <div class="hurdles-input">
+            <ion-input maxlength="6" placeholder="14.00s" [(ngModel)]="dataIn.hurdles" (ionChange)="updateScore()" ></ion-input>
+        </div>
+        <div class="sp-input">
+            <ion-input maxlength="5" placeholder="12.00m" [(ngModel)]="dataIn.sp" (ionChange)="updateScore()" ></ion-input>
+        </div>
+        <div class="hj-input">
+            <ion-input maxlength="4" placeholder="1.75m" [(ngModel)]="dataIn.hj" (ionChange)="updateScore()" ></ion-input>
+        </div>
+        <div class="two-input">
+            <ion-input maxlength="6" placeholder="24.50s" [(ngModel)]="dataIn.two" (ionChange)="updateScore()" ></ion-input>
+        </div>
+        <div class="lj-input">
+            <ion-input maxlength="4" placeholder="5.75m" [(ngModel)]="dataIn.lj" (ionChange)="updateScore()" ></ion-input>
+        </div>
+        <div class="jt-input">
+            <ion-input maxlength="5" placeholder="45.00m" [(ngModel)]="dataIn.jt" (ionChange)="updateScore()" ></ion-input>
+        </div>
+        <div class="eight-input">
             <ion-input maxlength="7" placeholder="2:20.00" [(ngModel)]="dataIn.eight" (ionBlur)="updateScore()" ></ion-input>
-        </ion-col>
-        <ion-col>
-          <div>{{dataOut.eight}}</div>
-        </ion-col>
-  </ion-row>
+        </div>
 
-    <ion-row>
-        <ion-col>
-            <ion-label></ion-label>
-        </ion-col>
-        <ion-col class="ion-align-items-center">
-            <ion-label>
-                <h2>Day 1:</h2>
-            </ion-label>
-        </ion-col>
-        <ion-col>
-            <div>{{dataOut.dayOneScore}}</div>
-        </ion-col>
+        <!--output divs        -->
+        <div class="hurdles-output">
+            {{dataOut.hurdles}}
+        </div>
+        <div class="hj-output">
+            {{dataOut.hj}}
+        </div>
+        <div class="sp-output">
+            {{dataOut.sp}}
+        </div>
+        <div class="two-output">
+            {{dataOut.two}}
+        </div>
+        <div class="lj-output">
+            {{dataOut.lj}}
+        </div>
+        <div class="jt-output">
+            {{dataOut.jt}}
+        </div>
+        <div class="eight-output">
+            {{dataOut.eight}}
+        </div>
 
-    </ion-row>
-    <ion-row>
-        <ion-col>
-            <ion-label></ion-label>
-        </ion-col>
-        <ion-col class="ion-align-items-center">
-            <ion-label>
-                <h2>Day 2:</h2>
-            </ion-label>
-        </ion-col>
-        <ion-col>
-            <div>{{dataOut.dayTwoScore}}</div>
-        </ion-col>
-    </ion-row>
-    <ion-row>
-        <ion-col>
-            <ion-label></ion-label>
-        </ion-col>
-        <ion-col class="ion-align-items-center">
-            <ion-label>
-                <h2>Total Score:</h2>
-            </ion-label>
-        </ion-col>
-        <ion-col>
-            <div>{{dataOut.totalScore}}</div>
-        </ion-col>
-    </ion-row>
+    </div>
 
-</ion-grid>
-</ion-card>
-<ion-content></ion-content>
+    <hr>
+
+    <div class="totals">
+        <!--Totals-->
+        <div class="dayOne">
+            <a>
+                Day One :
+            </a>
+        </div>
+        <div class="dayTwo">
+            <a>
+                Day Two :
+            </a>
+        </div>
+        <div class="total">
+            <a>
+                Total :
+            </a>
+        </div>
+
+        <div class="dayOneScore">
+            {{dataOut.dayOneScore}}
+        </div>
+        <div class="dayTwoScore">
+            {{dataOut.dayTwoScore}}
+        </div>
+        <div class="totalScore">
+            {{dataOut.totalScore}}
+        </div>
+
+    </div>
+    <!--    clear button-->
+    <div  (click)="clear()">
+        <ion-button class="clear" expand="full" fill="clear">
+
+            CLEAR
+        </ion-button>
+    </div>
+
+</ion-content>

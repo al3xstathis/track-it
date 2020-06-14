@@ -6,7 +6,6 @@ import "firebase/auth";
 import {AngularFirestore} from "@angular/fire/firestore";
 import { GooglePlus} from "@ionic-native/google-plus/ngx";
 import { Platform} from "@ionic/angular";
-import {AppComponent} from "../app/app.component";
 
 
 @Injectable({
@@ -25,9 +24,9 @@ export class AuthService {
   SignUp(email: string, password: string) {
     this.fireAuth
         .createUserWithEmailAndPassword(email,password)
-        .then(res => {
+        .then( async res => {
           console.log('Successfully signed up!', res);
-          this.db.collection('users').doc(res.user.uid).set({
+           await this.db.collection('users').doc(res.user.uid).set({
               email: email,
               UID: res.user.uid
           }).then()

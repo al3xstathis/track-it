@@ -1,28 +1,42 @@
-<ion-header>
-  <ion-toolbar color="primary" >
-    <ion-button slot="start" >
-      <ion-menu-button></ion-menu-button>
-    </ion-button>
-    <ion-title>
-      <p class="text-align-center">Saved</p>
-    </ion-title>
-  </ion-toolbar>
+<ion-header translucent="true">
+    <ion-toolbar >
+
+        <ion-button class="menu" color="none" slot="start">
+            <ion-menu-button size="large"></ion-menu-button>
+        </ion-button>
+
+        <ion-title class="header">
+            Saved
+        </ion-title>
+
+        <ion-button class="sort" color="none"  slot="end" (click)="sort()">
+            Sort
+        </ion-button>
+
+    </ion-toolbar>
 </ion-header>
 
-<ion-content fullscreen>
-      <ion-list *ngIf="savedEvent.length>0">
-        <ion-item *ngFor="let saved of savedEvent" button="">
-            <ion-col>
-                <ion-label>{{saved.title}}</ion-label>
-            </ion-col>
-            <ion-col>
-                    <p class="data">Day One: {{saved.dayOne}}, Day Two: {{saved.dayTwo}}, Total: {{saved.total}}</p>
-            </ion-col>
-        </ion-item>
-      </ion-list>
+<ion-content color="dark" fullscreen>
+    <hr>
+      <ion-grid >
+          <ion-row *ngFor="let saved of events | async" class="savedEvent">
 
-    <div *ngIf="savedEvent.length==0">
-        <h1>You don't have any saved events.</h1>
-    </div>
+                <ion-col class="name">
+                    <ion-label>{{saved.title}}</ion-label>
+                </ion-col>
+                <ion-col class="scores">
+                        <p>Day One: {{saved.dayOne}}<br> Day Two: {{saved.dayTwo}}<br> Total: {{saved.total}}</p>
+                </ion-col>
+                <ion-col class="openEvent" >
+                    <ion-button size="large" class="noShadow" fill="clear" (click)="openAlert(saved)">
+                        <ion-icon name="chevron-forward" class="icon"></ion-icon>
+                    </ion-button>
+                </ion-col>
+          </ion-row>
+      </ion-grid>
+
+<!--    <div *ngIf="savedEvent.length==0">-->
+<!--        <h1>You don't have any saved events.</h1>-->
+<!--    </div>-->
 
 </ion-content>

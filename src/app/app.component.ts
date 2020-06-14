@@ -21,6 +21,10 @@ export class AppComponent implements OnInit {
         {
           title: 'Decathlon',
           url: '/decathlon'
+        },
+        {
+          title: 'Indoor Heptathlon',
+          url: '/m-heptathlon'
         }
       ]
     },
@@ -30,6 +34,10 @@ export class AppComponent implements OnInit {
         {
           title: 'Heptathlon',
           url: '/heptathlon',
+        },
+        {
+          title: "Indoor Pentathlon",
+          url:'/f-pentathlon'
         }
       ]
     },
@@ -42,36 +50,6 @@ export class AppComponent implements OnInit {
       url: '/saved'
     }
   ]
-  public men = [
-    {
-      title: 'Decathlon',
-      url: '/decathlon'
-    }
-  ]
-  public women = [
-    {
-      title: 'Heptathlon',
-      url: '/heptathlon',
-    }
-  ]
-  public appPages = [
-    {
-      title: 'Decathlon',
-      url: '/decathlon',
-    },
-    {
-      title: 'Heptathlon',
-      url: '/heptathlon',
-    },
-    {
-      title: 'Runways',
-      url: '/runways',
-    },
-    {
-      title: 'Saved Series',
-      url: '/saved',
-    }
-  ];
 
 
 
@@ -92,7 +70,6 @@ export class AppComponent implements OnInit {
       this.statusBar.styleBlackTranslucent();
       this.splashScreen.hide();
       this.statusBar.overlaysWebView(false);
-      this.statusBar.backgroundColorByHexString('#ffffff');
       this.redirectAuth();
     });
 
@@ -105,7 +82,7 @@ export class AppComponent implements OnInit {
                 this.router.navigateByUrl('decathlon');
                 this.menuCtrl.enable(true);
               } else {
-                this.router.navigateByUrl('login');
+                this.router.navigateByUrl('register');
                 this.menuCtrl.enable(false);
                }
           })

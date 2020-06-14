@@ -1,27 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {DecathlonClass} from "../../models/decathlon.class";
-import {HttpClient} from "@angular/common/http";
-import { HttpHeaders } from '@angular/common/http';
 import {AlertController, ToastController} from "@ionic/angular";
 import {AngularFirestore} from "@angular/fire/firestore";
-import {AuthService} from "../../services/auth.service";
 import {AngularFireAuth} from "@angular/fire/auth";
-import {first} from "rxjs/operators";
+import {ActivatedRoute, Router} from "@angular/router";
+import * as firebase from "firebase/app"
+import "firebase/database";
+import {ContentService} from "../../services/content.service";
 
 @Component({
   selector: 'app-decathlon',
   templateUrl: './decathlon.page.html',
   styleUrls: ['./decathlon.page.scss'],
 })
-export class DecathlonPage implements OnInit {
+export class DecathlonPage implements OnInit, OnDestroy {
   dataIn  = new DecathlonClass();
   dataOut = new DecathlonClass();
 
-
-
-
-  constructor(private alertCtrl: AlertController, private db: AngularFirestore, private auth: AngularFireAuth, private toastController: ToastController) {
-
+  constructor(private alertCtrl: AlertController,
+              private db: AngularFirestore,
+              private auth: AngularFireAuth,
+              private toastController: ToastController,
+              private router: Router) {
   }
 
     async presentToast() {
@@ -32,9 +32,10 @@ export class DecathlonPage implements OnInit {
         await toast.present();
     }
 
-  async presentPrompt() {
+    async presentPrompt() {
       const alert = await this.alertCtrl.create({
         header: 'Save',
+        cssClass: 'alert',
         inputs: [
           {
             name: 'event',
@@ -51,9 +52,24 @@ export class DecathlonPage implements OnInit {
           },
           {
             text: 'Save',
-            handler: data => {
-                this.auth.authState.pipe(first()).toPromise().then(cred => {
-                    this.db.collection('saved').add({
+            handler: async data => {
+
+                // check if any of the fields have not been defined and initialize them with "0" to post to firestore
+
+                for (let key in this.dataIn) {
+                    if (this.dataIn.hasOwnProperty(key))
+                    if (this.dataIn[key] == undefined) {
+                        this.dataIn[key] = "0";
+                    }
+                }
+
+                const id = (await this.auth.currentUser).uid;
+
+
+                //edit
+                if(this.dataIn.id) {
+                    await this.db.collection('users').doc(id).collection('saved').doc(this.dataIn.id).set({
+                        time: firebase.database.ServerValue.TIMESTAMP,
                         title: data.event,
                         hundred: this.dataIn.hundred,
                         lj: this.dataIn.lj,
@@ -68,47 +84,71 @@ export class DecathlonPage implements OnInit {
                         dayOne: this.dataOut.dayOneScore,
                         dayTwo: this.dataOut.dayTwoScore,
                         total: this.dataOut.totalScore,
-                        UID: cred.uid,
-                        dec: true
-                })
-                }).catch(error => {
-                    console.log(error);
-                });
-                this.presentToast()
+                        type: "mDec"
+                    })
+                        .catch(error => {
+                            console.log(error);
+                        });
+                    await this.presentToast()
+                } else {
+                    //add new
+                    await this.db.collection('users').doc(id).collection('saved').add({
+                        time: firebase.database.ServerValue.TIMESTAMP,
+                        title: data.event,
+                        hundred: this.dataIn.hundred,
+                        lj: this.dataIn.lj,
+                        sp: this.dataIn.sp,
+                        hj: this.dataIn.hj,
+                        four: this.dataIn.four,
+                        hurdles: this.dataIn.hurdles,
+                        dt: this.dataIn.dt,
+                        pv: this.dataIn.pv,
+                        jt: this.dataIn.jt,
+                        fifteen: this.dataIn.fifteen,
+                        dayOne: this.dataOut.dayOneScore,
+                        dayTwo: this.dataOut.dayTwoScore,
+                        total: this.dataOut.totalScore,
+                        type: "mDec"
+                    })
+                        .catch(error => {
+                            console.log(error);
+                        });
+                    await this.presentToast()
+                }
             }
-            }
+          }
         ]
       });
   await alert.present();
 }
 
-  updateScore(){
+    updateScore(){
       for (let key in this.dataIn) {
           if (this.dataIn.hasOwnProperty(key)) {
-              if (key != "fifteen") {
-                  let parse = Number(this.dataIn[key]);
-                  if (parse != 0.00) {
-                      let eventScore = this.dataIn.eventScore(key, parse);
-                      if (isNaN(eventScore)) {
-                          eventScore = 0;
+                  if (key != "fifteen") {
+                      let parse = Number(this.dataIn[key]);
+                      if (parse != 0.00) {
+                          let eventScore = this.dataIn.eventScore(key, parse);
+                          if (isNaN(eventScore)) {
+                              eventScore = 0;
+                          }
+                          this.dataOut[key] = eventScore;
+                      } else {
+                          this.dataOut[key] = 0;
                       }
-                      this.dataOut[key] = eventScore;
                   } else {
-                      this.dataOut[key] = 0;
-                  }
-              } else {
-                  if (this.dataIn[key] != "" && this.dataIn[key] != "0.00") {
-                      let eventScore = this.dataIn.eventScore(key, this.dataIn[key]);
-                      if (isNaN(eventScore)) {
-                          eventScore = 0;
+                      if (this.dataIn[key] != "" && this.dataIn[key] != "0.00") {
+                          let eventScore = this.dataIn.eventScore(key, this.dataIn[key]);
+                          if (isNaN(eventScore)) {
+                              eventScore = 0;
+                          }
+                          // @ts-ignore
+                          this.dataOut[key] = eventScore;
+                      } else {
+                          // @ts-ignore
+                          this.dataOut[key] = 0;
                       }
-                      // @ts-ignore
-                      this.dataOut[key] = eventScore;
-                  } else {
-                      // @ts-ignore
-                      this.dataOut[key] = 0;
                   }
-              }
           }
       }
       this.calculateDayOne();
@@ -152,7 +192,77 @@ export class DecathlonPage implements OnInit {
       this.dataOut.totalScore = (Number(this.dataOut.dayOneScore) + Number(this.dataOut.dayTwoScore)).toString();
     }
 
-  ngOnInit() {
+    async save() {
+        for (let key in this.dataIn) {
+            if (this.dataIn.hasOwnProperty(key))
+                if (this.dataIn[key] == undefined) {
+                    this.dataIn[key] = "0";
+                }
+        }
+        const id = (await this.auth.currentUser).uid;
+        //edit
+            await this.db.collection('users').doc(id).collection('saved').doc(this.dataIn.id).set({
+                time: firebase.database.ServerValue.TIMESTAMP,
+                title: this.dataIn.title,
+                hundred: this.dataIn.hundred,
+                lj: this.dataIn.lj,
+                sp: this.dataIn.sp,
+                hj: this.dataIn.hj,
+                four: this.dataIn.four,
+                hurdles: this.dataIn.hurdles,
+                dt: this.dataIn.dt,
+                pv: this.dataIn.pv,
+                jt: this.dataIn.jt,
+                fifteen: this.dataIn.fifteen,
+                dayOne: this.dataOut.dayOneScore,
+                dayTwo: this.dataOut.dayTwoScore,
+                total: this.dataOut.totalScore,
+                type: "mDec"
+            })
+                .catch(error => {
+                    console.log(error);
+                });
+        await this.clearAll();
+        await this.router.navigateByUrl('saved');
+        await this.presentToast()
+    }
+
+    clear() {
+      for (let key in this.dataIn) {
+          if(this.dataIn.hasOwnProperty(key)) {
+              if(key != "id" && key != "title") {
+                  this.dataIn[key] = "";
+              }
+          }
+      }
+    }
+
+    async clearAll() {
+        ContentService.mDecValues = null;
+    }
+
+    ngOnDestroy() {
+      this.clearAll();
+    }
+
+  async ngOnInit() {
+      this.updateScore();
+
+      if(ContentService.mDecValues != null) {
+              this.dataIn.hundred = ContentService.mDecValues.hundred;
+              this.dataIn.lj = ContentService.mDecValues.lj;
+              this.dataIn.sp = ContentService.mDecValues.sp;
+              this.dataIn.hj = ContentService.mDecValues.hj;
+              this.dataIn.four = ContentService.mDecValues.four;
+              this.dataIn.hurdles = ContentService.mDecValues.hurdles;
+              this.dataIn.dt = ContentService.mDecValues.dt;
+              this.dataIn.pv = ContentService.mDecValues.pv;
+              this.dataIn.jt = ContentService.mDecValues.jt;
+              this.dataIn.fifteen = ContentService.mDecValues.fifteen;
+              this.dataIn.id = ContentService.mDecValues.id;
+              this.dataIn.title = ContentService.mDecValues.title;
+          //console.log(ContentService.getDecContent());
+      }
   }
 
 }

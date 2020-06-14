@@ -1,4 +1,6 @@
-export interface IHeptathlon {
+import {EventInterface} from "./event.interface";
+
+export interface IHeptathlon extends EventInterface{
     hurdles: string;
     hj: string;
     sp: string;
@@ -9,10 +11,5 @@ export interface IHeptathlon {
     dayOneScore: string;
     dayTwoScore: string;
     totalScore: string;
-
-
-    calculateRunning(score,a,b,c);
-    calculateField(score,a,b,c);
-    eventScore(event,score);
-    getSeconds: (number) =>number;
+    title: string;
 }

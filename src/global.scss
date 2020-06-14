@@ -26,3 +26,19 @@
 @import "~@ionic/angular/css/flex-utils.css";
 
 @import '~firebaseui/dist/firebaseui.css';
+
+ion-item {
+  --border-width: 0;
+  --inner-border-width: 0;
+}
+
+.action {
+  --color: white;
+  --button-color: white;
+  --background: black;
+}
+.alert {
+  --background: black;
+  color: white !important;
+  width: 100%;
+}

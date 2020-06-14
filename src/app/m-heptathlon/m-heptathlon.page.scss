@@ -3,11 +3,6 @@ hr {
   height: unset;
   margin-top: 5px;
 }
-
-ion-header::after {
-  background-image: none;
-}
-
 .eventTitle {
   text-align: center;
   font-size: 28px;
@@ -15,9 +10,13 @@ ion-header::after {
   letter-spacing: 0.17em;
 }
 
+ion-header::after {
+  background-image: none;
+}
+
 .header {
   text-align: center;
-  font-size: 28px;
+  font-size: 18px;
   font-weight: lighter;
   letter-spacing: 0.17em;
   padding-top: 10px;
@@ -96,7 +95,7 @@ a {
   color: var(--ion-color-dark-contrast);
 }
 
-.hurdles-label {
+.sixty-label {
   grid-column-start: 2;
   grid-column-end: 2;
   grid-row-start: 1;
@@ -104,7 +103,7 @@ a {
   align-self: center;
   justify-self: start;
 }
-.hj-label {
+.lj-label {
   grid-column-start: 2;
   grid-column-end: 2;
   grid-row-start: 2;
@@ -120,7 +119,7 @@ a {
   align-self: center;
   justify-self: start;
 }
-.two-label {
+.hj-label {
   grid-column-start: 2;
   grid-column-end: 2;
   grid-row-start: 4;
@@ -128,7 +127,7 @@ a {
   align-self: center;
   justify-self: start;
 }
-.lj-label {
+.hurdles-label {
   grid-column-start: 2;
   grid-column-end: 2;
   grid-row-start: 5;
@@ -136,7 +135,7 @@ a {
   align-self: center;
   justify-self: start;
 }
-.jt-label {
+.pv-label {
   grid-column-start: 2;
   grid-column-end: 2;
   grid-row-start: 6;
@@ -144,7 +143,7 @@ a {
   align-self: center;
   justify-self: start;
 }
-.eight-label {
+.thousand-label {
   grid-column-start: 2;
   grid-column-end: 2;
   grid-row-start: 7;
@@ -162,8 +161,14 @@ a {
 
 // input column
 
+.sixty-input, .lj-input, .sp-input, .hj-input, .hurdles-input, .pv-input, .thousand-input {
+  border-radius: 10px;
+  //mix-blend-mode: color-dodge;
+  background: var(--ion-color-dark-tint);
+  width: 100px;
+}
 
-.hurdles-input {
+.sixty-input {
   grid-column-start: 3;
   grid-column-end: 3;
   grid-row-start: 1;
@@ -172,7 +177,7 @@ a {
   justify-self: center;
   text-align: center;
 }
-.hj-input {
+.lj-input {
   grid-column-start: 3;
   grid-column-end: 3;
   grid-row-start: 2;
@@ -191,7 +196,7 @@ a {
   justify-self: center;
   text-align: center;
 }
-.two-input {
+.hj-input {
   grid-column-start: 3;
   grid-column-end: 3;
   grid-row-start: 4;
@@ -200,7 +205,7 @@ a {
   justify-self: center;
   text-align: center;
 }
-.lj-input {
+.hurdles-input {
   grid-column-start: 3;
   grid-column-end: 3;
   grid-row-start: 5;
@@ -209,7 +214,7 @@ a {
   justify-self: center;
   text-align: center;
 }
-.jt-input {
+.pv-input {
   grid-column-start: 3;
   grid-column-end: 3;
   grid-row-start: 6;
@@ -218,7 +223,7 @@ a {
   justify-self: center;
   text-align: center;
 }
-.eight-input {
+.thousand-input {
   grid-column-start: 3;
   grid-column-end: 3;
   grid-row-start: 7;
@@ -228,15 +233,9 @@ a {
   text-align: center;
 }
 
-.hurdles-input, .hj-input, .sp-input, .lj-input, .two-input, .jt-input, .eight-input {
-  border-radius: 10px;
-  //mix-blend-mode: color-dodge;
-  background: var(--ion-color-dark-tint);
-  width: 100px;
-}
 
 
-.hurdles-output {
+.sixty-output {
   grid-column-start: 4;
   grid-column-end: 4;
   grid-row-start: 1;
@@ -245,7 +244,7 @@ a {
   justify-self: center;
   text-align: center;
 }
-.hj-output {
+.lj-output {
   grid-column-start: 4;
   grid-column-end: 4;
   grid-row-start: 2;
@@ -263,7 +262,7 @@ a {
   justify-self: center;
   text-align: center;
 }
-.two-output {
+.hj-output {
   grid-column-start: 4;
   grid-column-end: 4;
   grid-row-start: 4;
@@ -272,7 +271,7 @@ a {
   justify-self: center;
   text-align: center;
 }
-.lj-output {
+.hurdles-output {
   grid-column-start: 4;
   grid-column-end: 4;
   grid-row-start: 5;
@@ -281,7 +280,7 @@ a {
   justify-self: center;
   text-align: center;
 }
-.jt-output {
+.pv-output {
   grid-column-start: 4;
   grid-column-end: 4;
   grid-row-start: 6;
@@ -290,7 +289,7 @@ a {
   justify-self: center;
   text-align: center;
 }
-.eight-output {
+.thousand-output {
   grid-column-start: 4;
   grid-column-end: 4;
   grid-row-start: 7;
@@ -369,6 +368,3 @@ a {
   justify-self: center;
   text-align: center;
 }
-
-
- 

@@ -17,9 +17,10 @@ export class DecathlonClass implements IDecathlon{
   dayOneScore="";
   dayTwoScore="";
   totalScore="";
+  title="";
+  id="";
 
-
-  eventScore(event: string, score: any): number {
+    eventScore(event: string, score: any): number {
     let a: number= 0;
     let b: number= 0;
     let c: number= 0;
@@ -83,25 +84,25 @@ export class DecathlonClass implements IDecathlon{
             }
         }
 
+    getSeconds(score): number {
 
-
-      getSeconds(score): number {
-          if (score.length >= 1) {
-          let one = score.toString().split(':');
-          let min = Number(one[0]);
-          let sec = Number(one[1]);
-          console.log(min * 60 + sec);
-          return min * 60 + sec;
+      if(score) {
+          if (score.length > 1) {
+              let one = score.toString().split(':');
+              let min = Number(one[0]);
+              let sec = Number(one[1]);
+              return min * 60 + sec;
+          }
       }
+
       }
 
-      calculateRunning(score,a,b,c) {
+    calculateRunning(score,a,b,c) {
               return Math.floor(a*Math.pow(b-score, c));
           }
 
-      calculateField(score,a,b,c) {
+    calculateField(score,a,b,c) {
               return Math.floor(a*Math.pow(score-b,c));
       }
-
 
 }

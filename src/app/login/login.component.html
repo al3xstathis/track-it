@@ -1,44 +1,48 @@
-<ion-header>
-  <ion-toolbar color="primary" >
-    <ion-title>
-      <p align="center">Login</p>
-    </ion-title>
-    <!--    <ion-button slot="end" >Register</ion-button>-->
 
-  </ion-toolbar>
-</ion-header>
+<ion-content color="dark" fullscreen>
 
-<ion-card>
-  <ion-list>
-    <ion-item>
-      <ion-label position="stacked">Email</ion-label>
-      <ion-input [(ngModel)]="email" placeholder="johnsmith@hotmail.com"></ion-input>
-    </ion-item>
 
-    <ion-item>
-      <ion-label position="stacked">Password</ion-label>
-      <ion-input type="password" [(ngModel)]="password" placeholder="******"></ion-input>
-    </ion-item>
 
-    <ion-item>
-      <ion-button (click)="loginEmail()" fill="outline">
-        <ion-icon name="mail-outline" slot="start"></ion-icon>
-        Login
-      </ion-button>
-      <ion-button (click)="loginGoogle()" fill="outline">
+
+
+  <div class="container">
+
+    <div class="trackit">
+      <a>Track-it</a>
+    </div>
+
+    <div class="login">
+      <a>Login</a>
+    </div>
+
+    <div class="email">
+      <ion-input type="email" placeholder="Email" [(ngModel)]="email"></ion-input>
+    </div>
+
+    <div class="password">
+      <ion-input type="password" placeholder="Password" [(ngModel)]="password"></ion-input>
+    </div>
+
+    <div class="loginButton">
+      <ion-button  fill="outline" color="dark" slot="end" (click)="loginEmail()">Login</ion-button>
+    </div>
+
+    <div class="googleButton">
+      <ion-button expand="block" fill="outline" color="dark" (click)="loginGoogle()"> Login With Google
         <ion-icon name="logo-google" slot="start"></ion-icon>
-        Login with Google
       </ion-button>
-    </ion-item>
+    </div>
 
-    <ion-item>
-      <ion-label>Don't have an account?</ion-label>
-      <ion-button routerLink="/register" fill="outline"> Register</ion-button>
+    <div class="register">
+      <a>Don't have an account ?</a>
+    </div>
 
-    </ion-item>
+    <div class="registerButton">
+      <ion-button expand="block" fill="outline" color="dark" routerLink="/register">Register</ion-button>
+    </div>
+
+  </div>
 
 
-  </ion-list>
 
-</ion-card>
-<ion-content></ion-content>
+</ion-content>

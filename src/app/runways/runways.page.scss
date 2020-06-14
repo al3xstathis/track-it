@@ -1,3 +1,73 @@
-.head {
-  color: #3dc2ff;
+.menu {
+  --box-shadow: none;
+}
+
+.header {
+  text-align: center;
+  font-size: 28px;
+  font-weight: lighter;
+  letter-spacing: 0.17em;
+  padding-top: 10px;
+  --box-shadow: none;
+  color: var(--ion-color-dark-contrast);
+}
+ion-header::after {
+  background-image: none;
+}
+
+hr {
+  border: 1px solid var(--ion-color-dark-contrast);;
+  height: unset;
+  margin-top: 0;
+}
+
+ion-menu-button {
+  font-size: 40px !important;
+  color: var(--ion-color-dark-contrast);;
+}
+
+ion-toolbar {
+  --background: transparent;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+ion-fab {
+  color: var(--ion-color-dark-contrast);
+  box-shadow: #0d0d0d;
+}
+
+ion-card-title {
+  font-size: 15px;
+  letter-spacing: 0.1em;
+  font-weight: lighter;
+  color: var(--ion-color-light-contrast);
+}
+
+ion-card-content {
+  color: var(--ion-color-light-contrast);
+}
+
+ion-card {
+  background: var(--ion-color-light-tint);
+}
+
+h1 {
+  text-align: center;
+  font-style: italic;
+  font-size: 20px;
+  opacity: 50%;
+  padding-top: 50px;
+  max-width: 190px;
+  margin: 100px auto;
+}
+
+//.action-sheet-button.sc-ion-action-sheet-md {
+//  color: var(--ion-color-dark);
+//}
+
+.action-sheet-group.sc-ion-action-sheet-md  {
+  //color: black;
 }

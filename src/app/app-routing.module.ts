@@ -9,7 +9,6 @@ const routes: Routes = [
         redirectTo: 'decathlon',
         pathMatch: 'full'
     },
-
     {
         path: 'decathlon',
         loadChildren: () => import('./decathlon/decathlon.module').then(m => m.DecathlonPageModule)
@@ -19,6 +18,14 @@ const routes: Routes = [
         loadChildren: () => import('./heptathlon/heptathlon.module').then(m => m.HeptathlonPageModule)
     },
     {
+        path: 'm-heptathlon',
+        loadChildren: () => import('./m-heptathlon/m-heptathlon.module').then( m => m.MHeptathlonPageModule)
+    },
+    {
+        path: 'f-pentathlon',
+        loadChildren: () => import('./f-pentathlon/f-pentathlon.module').then( m => m.FPentathlonPageModule)
+    },
+    {
         path: 'runways',
         loadChildren: () => import('./runways/runways.module').then(m => m.RunwaysPageModule)
     },
@@ -26,16 +33,19 @@ const routes: Routes = [
         path: 'saved',
         loadChildren: () => import('./saved/saved.module').then(m => m.SavedPageModule)
     },
-    { path: 'login',
+    {
+        path: 'home',
+        loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    },
+    {
+        path: 'login',
         component: LoginComponent
     },
-    { path: 'register',
+    {
+        path: 'register',
         component: RegisterComponent
-    },
-  {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
-  },
+    }
+
 ];
 
 @NgModule({

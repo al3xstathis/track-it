@@ -1,7 +1,103 @@
-.data {
-  font-size: x-small;
+.menu {
+  --box-shadow: none;
 }
 
-.label {
-  width: 100px;
+ion-header::after {
+  background-image: none;
 }
+
+.header {
+  text-align: center;
+  font-size: 28px;
+  font-weight: lighter;
+  letter-spacing: 0.17em;
+  padding-top: 10px;
+  --box-shadow: none;
+  color: var(--ion-color-dark-contrast);
+}
+.sort {
+  --box-shadow:none;
+  letter-spacing: 0.1em;
+  padding-top: 10px;
+  color: var(--ion-color-dark-contrast);
+}
+
+hr {
+  border: 1px solid var(--ion-color-dark-contrast);
+  height: unset;
+  margin-top: 0;
+}
+
+//.sc-ion-buttons-md-h {
+//  display: block !important;
+//}
+
+ion-menu-button {
+  font-size: 40px !important;
+  color: var(--ion-color-dark-contrast);
+}
+
+
+
+ion-toolbar {
+  --background: transparent;
+}
+
+h1 {
+  text-align: center;
+  font-style: italic;
+  font-size: 20px;
+  opacity: 50%;
+  padding-top: 50px;
+  max-width: 190px;
+  margin: 100px auto;
+}
+
+.savedEvent {
+  background: transparent;
+  letter-spacing: 0.17em;
+  font-style: normal;
+  font-weight: normal;
+}
+
+.name {
+  font-size: 16px;
+  display: flex;
+  place-self: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.scores {
+  font-size: 11px;
+  line-height: 20px;
+  display: flex;
+  place-self: center;
+  justify-content: flex-start;
+}
+
+.invisible {
+  visibility: hidden;
+}
+.openEvent {
+  display: flex;
+  place-self: center;
+  justify-content: flex-end;
+
+}
+
+.noShadow {
+  --box-shadow: none;
+  background: transparent;
+}
+
+ion-icon {
+  color: var(--ion-color-dark-contrast);
+}
+
+ion-row {
+  height: 100px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid var(--ion-color-dark-contrast);
+}
+

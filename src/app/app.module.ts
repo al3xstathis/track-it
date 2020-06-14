@@ -36,7 +36,7 @@ import {GooglePlus} from "@ionic-native/google-plus/ngx";
     HttpClientModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule,
-    AngularFirestoreModule,
+    AngularFirestoreModule.enablePersistence(),
     FormsModule,
     ReactiveFormsModule,
     RouterModule
