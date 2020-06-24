@@ -8,15 +8,15 @@
 
           <div *ngFor="let e of events">
 
-            <ion-item button *ngIf="e.children?.length>0" (click)="e.open = !e.open" lines="none" detail="false" color="none">
-              <ion-icon [class.closed-icon]="!e.open" [class.open-icon]="e.open" name="chevron-forward"  slot="end"></ion-icon>
+            <ion-item mode="md" button *ngIf="e.children?.length>0" (click)="e.open = !e.open" lines="none" detail="false" color="none">
+              <ion-icon  [class.closed-icon]="!e.open" [class.open-icon]="e.open" name="chevron-forward"  slot="end"></ion-icon>
 
               <ion-label>{{e.title}}</ion-label>
             </ion-item>
 
             <ion-list [class.child-open]="e.open" [class.child-closed]="!e.open">
               <ion-menu-toggle >
-                <ion-item color="none" lines="none" *ngFor="let child of e.children" routerDirection="root" [routerLink]="[child.url]" (click)="e.open=!e.open" class="child">
+                <ion-item mode="md" color="none" lines="none" *ngFor="let child of e.children" routerDirection="root" [routerLink]="[child.url]" (click)="e.open=!e.open" class="child">
                   <ion-label>{{ child.title }}</ion-label>
                 </ion-item>
               </ion-menu-toggle>
@@ -33,6 +33,14 @@
           </div>
 
         </ion-list>
+        <div class="light-dark">
+          <ion-button fill="clear" *ngIf="theme == 0" (click)="themeSwitch()">
+            <ion-icon name="sunny"></ion-icon>
+          </ion-button>
+          <ion-button fill="clear" *ngIf="theme == 1" (click)="themeSwitch()">
+            <ion-icon name="moon"></ion-icon>
+          </ion-button>
+        </div>
 
       </ion-content>
     </ion-menu>

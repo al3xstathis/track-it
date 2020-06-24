@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 
 import {MenuController, Platform} from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -14,6 +14,7 @@ import {Router} from "@angular/router";
 })
 export class AppComponent implements OnInit {
   public selectedIndex = 0;
+  public theme = 0;
   public events = [
     {
       title: "Men's Calculators",
@@ -48,6 +49,10 @@ export class AppComponent implements OnInit {
     {
       title: "Saved Series",
       url: '/saved'
+    },
+    {
+      title: "Unit Converter",
+      url: '/unit-converter'
     }
   ]
 
@@ -60,7 +65,8 @@ export class AppComponent implements OnInit {
     private statusBar: StatusBar,
     private fireAuth: AngularFireAuth,
     private router: Router,
-    private menuCtrl: MenuController
+    private menuCtrl: MenuController,
+    // private localStorage: ,
   ) {
     this.initializeApp();
   }
@@ -88,6 +94,25 @@ export class AppComponent implements OnInit {
           })
           .then(res => {})
   }
+
+  themeSwitch() {
+    if (1==1) {
+
+    }
+  }
+
+  addDark() {
+    // Use matchMedia to check the user preference
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    prefersDark.addListener((mediaQuery) => this.toggleDarkTheme(mediaQuery.matches));
+    this.toggleDarkTheme(prefersDark.matches);
+  }
+
+  toggleDarkTheme(shouldAdd) {
+    document.body.classList.toggle('dark', shouldAdd);
+  }
+
+
 
   ngOnInit() {
   }

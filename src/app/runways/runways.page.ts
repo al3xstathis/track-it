@@ -41,15 +41,21 @@ export class RunwaysPage implements OnInit {
         handler: () => {
           this.presentAlert('longJump','Long Jump')
         }
-      }, {
+      },{
         text: 'High Jump',
         handler: () => {
           this.presentAlert('highJump', 'High Jump')
         }
-      }, {
+      },{
+        text: 'Pole vault',
+        handler: () => {
+          this.presentAlert('poleVault', 'Pole Vault')
+        }
+      },{
+
         text: 'Triple Jump',
         handler: () => {
-            this.presentAlert('tripleJump', 'Triple Jump')
+          this.presentAlert('tripleJump', 'Triple Jump')
         }
       }, {
         text: 'Javelin',

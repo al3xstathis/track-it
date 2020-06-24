@@ -38,13 +38,17 @@ const routes: Routes = [
         loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
     },
     {
+    path: 'unit-converter',
+    loadChildren: () => import('./unit-converter/unit-converter.module').then( m => m.UnitConverterPageModule)
+    },
+    {
         path: 'login',
         component: LoginComponent
     },
     {
         path: 'register',
         component: RegisterComponent
-    }
+    },
 
 ];
 

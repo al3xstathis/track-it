@@ -1,0 +1,24 @@
+<ion-header translucent="true" collapse>
+  <ion-toolbar>
+
+    <ion-button class="menu" color="none"  slot="start">
+      <ion-menu-button size="large"></ion-menu-button>
+    </ion-button>
+
+    <ion-title class="header">
+      Unit Converter
+    </ion-title>
+
+    <ion-button class="save" (click)="fToM = !fToM" *ngIf="!fToM"   color="none"  slot="end">
+      F to M
+    </ion-button>
+    <ion-button class="save" (click)="fToM = !fToM" *ngIf="fToM" color="none"  slot="end">
+      M to F
+    </ion-button>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="dark" fullscreen>
+
+</ion-content>

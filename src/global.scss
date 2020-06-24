@@ -33,12 +33,34 @@ ion-item {
 }
 
 .action {
-  --color: white;
-  --button-color: white;
-  --background: black;
+  --color: var(--ion-color-dark-contrast);
+  --button-color: var(--ion-color-dark-contrast);
+  --background: var(--ion-color-dark);
 }
+
+.action-sheet-cancel.sc-ion-action-sheet-ios::after{
+  background: var(--ion-color-dark) !important;
+}
+
+.alert-input.sc-ion-alert-ios, .alert-input-sc-ion-alert-md {
+  color: var(--ion-color-dark) !important;
+  border-bottom: 0 !important;
+}
+
+.alert-button.sc-ion-alert-md, .alert-button.sc-ion-alert-ios {
+  color: var(--ion-color-dark-contrast);
+
+}
+
 .alert {
-  --background: black;
-  color: white !important;
-  width: 100%;
+  --background: var(--ion-color-dark);
+  --color: var(--ion-color-dark-contrast);
 }
+
+.header-ios ion-toolbar:last-of-type {
+  --border-width: 0 0 0px;
+}
+
+
+
+

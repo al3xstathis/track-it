@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v7.0.29,
+* Autoprefixer: v9.7.6
+* Browsers: last 4 version
+*/
+
 .menu {
   --box-shadow: none;
 }
@@ -28,9 +35,6 @@ hr {
   margin-top: 0;
 }
 
-//.sc-ion-buttons-md-h {
-//  display: block !important;
-//}
 
 ion-menu-button {
   font-size: 40px !important;
@@ -62,8 +66,14 @@ h1 {
 
 .name {
   font-size: 16px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -ms-grid-row-align: center;
+  -ms-grid-column-align: center;
   place-self: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
   text-align: center;
 }
@@ -71,8 +81,14 @@ h1 {
 .scores {
   font-size: 11px;
   line-height: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -ms-grid-row-align: center;
+  -ms-grid-column-align: center;
   place-self: center;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
   justify-content: flex-start;
 }
 
@@ -80,8 +96,14 @@ h1 {
   visibility: hidden;
 }
 .openEvent {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -ms-grid-row-align: center;
+  -ms-grid-column-align: center;
   place-self: center;
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
   justify-content: flex-end;
 
 }

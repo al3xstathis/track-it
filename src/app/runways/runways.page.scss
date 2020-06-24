@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v7.0.29,
+* Autoprefixer: v9.7.6
+* Browsers: last 4 version
+*/
+
 .menu {
   --box-shadow: none;
 }
@@ -36,22 +43,23 @@ ion-toolbar {
 
 ion-fab {
   color: var(--ion-color-dark-contrast);
+  -webkit-box-shadow: #0d0d0d;
   box-shadow: #0d0d0d;
 }
 
 ion-card-title {
-  font-size: 15px;
   letter-spacing: 0.1em;
-  font-weight: lighter;
-  color: var(--ion-color-light-contrast);
+  color: var(--ion-color-dark-shade);
 }
 
 ion-card-content {
-  color: var(--ion-color-light-contrast);
+  color: var(--ion-color-dark-shade);
+  font-size: large;
 }
 
 ion-card {
-  background: var(--ion-color-light-tint);
+  background: var(--ion-color-dark-contrast);
+  font-size: large;
 }
 
 h1 {
@@ -62,12 +70,4 @@ h1 {
   padding-top: 50px;
   max-width: 190px;
   margin: 100px auto;
-}
-
-//.action-sheet-button.sc-ion-action-sheet-md {
-//  color: var(--ion-color-dark);
-//}
-
-.action-sheet-group.sc-ion-action-sheet-md  {
-  //color: black;
 }

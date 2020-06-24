@@ -32,7 +32,7 @@
       <ion-card *ngFor="let runway of runways | async" (click)="edit(runway.title, runway.event, runway.runway, runway.steps, runway.id)">
         <ion-card-header>
           <ion-card-title>
-            {{runway.event}}, {{runway.steps}}
+            {{runway.event}}, {{runway.steps}} steps
           </ion-card-title>
         </ion-card-header>
           <ion-card-content>

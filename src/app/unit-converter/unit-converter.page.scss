@@ -1,0 +1,60 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v7.0.29,
+* Autoprefixer: v9.7.6
+* Browsers: last 4 version
+*/
+
+hr {
+  border: 1px solid var(--ion-color-dark-contrast);
+  height: unset;
+  margin-top: 5px;
+}
+.eventTitle {
+  text-align: center;
+  font-size: 28px;
+  font-weight: lighter;
+  letter-spacing: 0.17em;
+}
+
+ion-header::after {
+  background-image: none;
+}
+
+.header {
+  text-align: center;
+  font-size: 18px;
+  padding-bottom: 10px;
+  font-weight: lighter;
+  letter-spacing: 0.17em;
+  padding-top: 10px;
+  --box-shadow: none;
+  color: var(--ion-color-dark-contrast);
+}
+
+.save {
+  --box-shadow:none;
+  letter-spacing: 0.1em;
+  color: var(--ion-color-dark-contrast);
+}
+.clear {
+  --box-shadow:none;
+  letter-spacing: 0.1em;
+  color: var(--ion-color-dark-contrast);
+}
+.menu {
+  --box-shadow:none;
+}
+
+.sc-ion-buttons-md-h {
+  display: block !important;
+}
+
+ion-menu-button {
+  font-size: 40px !important;
+  color: var(--ion-color-dark-contrast);
+}
+
+ion-toolbar {
+  --background: transparent;
+}

@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v7.0.29,
+* Autoprefixer: v9.7.6
+* Browsers: last 4 version
+*/
+
 
 ion-menu ion-content {
   --padding-start: 8px;
@@ -7,7 +14,7 @@ ion-menu ion-content {
 }
 
 ion-menu ion-list {
-  padding: 0px 0;
+  padding: 0 0;
 }
 
 ion-menu ion-list-header {
@@ -39,6 +46,8 @@ ion-menu ion-item ion-label {
   font-size: small;
   font-weight: lighter;
   text-indent: 30px;
+  -webkit-transition: height 0.3s linear;
+  -o-transition: height 0.3s linear;
   transition: height 0.3s linear;
   height: 100px;
 }
@@ -46,17 +55,32 @@ ion-menu ion-item ion-label {
   font-size: small;
   font-weight: lighter;
   text-indent: 30px;
+  -webkit-transition: height 0.3s linear;
+  -o-transition: height 0.3s linear;
   transition: height 0.3s linear;
   height: 0;
 }
 
 
 .closed-icon {
+  -webkit-transition: -webkit-transform 0.3s linear;
+  transition: -webkit-transform 0.3s linear;
+  -o-transition: transform 0.3s linear;
   transition: transform 0.3s linear;
+  transition: transform 0.3s linear,
+  -webkit-transform 0.3s linear;
+  -webkit-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
   transform: rotate(0deg);
 }
 .open-icon {
+  -webkit-transition: -webkit-transform 0.3s linear;
+  transition: -webkit-transform 0.3s linear;
+  -o-transition: transform 0.3s linear;
   transition: transform 0.3s linear;
+  transition: transform 0.3s linear, -webkit-transform 0.3s linear;
+  -webkit-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
   transform: rotate(90deg);
 }
 
