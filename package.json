@@ -41,6 +41,7 @@
     "cordova-ios": "^6.0.0",
     "cordova-plugin-firebase-authentication": "^3.2.0",
     "cordova-plugin-googleplus": "^8.4.0",
+    "cordova-plugin-ionic": "^5.4.7",
     "cordova-sqlite-storage": "^5.0.0",
     "cordova-support-android-plugin": "^1.0.2",
     "cordova-support-google-services": "^1.4.0",

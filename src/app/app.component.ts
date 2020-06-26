@@ -14,7 +14,6 @@ import {Router} from "@angular/router";
 })
 export class AppComponent implements OnInit {
   public selectedIndex = 0;
-  public theme = 0;
   public events = [
     {
       title: "Men's Calculators",
@@ -95,22 +94,6 @@ export class AppComponent implements OnInit {
           .then(res => {})
   }
 
-  themeSwitch() {
-    if (1==1) {
-
-    }
-  }
-
-  addDark() {
-    // Use matchMedia to check the user preference
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
-    prefersDark.addListener((mediaQuery) => this.toggleDarkTheme(mediaQuery.matches));
-    this.toggleDarkTheme(prefersDark.matches);
-  }
-
-  toggleDarkTheme(shouldAdd) {
-    document.body.classList.toggle('dark', shouldAdd);
-  }
 
 
 
