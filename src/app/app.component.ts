@@ -15,7 +15,7 @@ import {Router} from '@angular/router';
 export class AppComponent implements OnInit {
     public selectedIndex = 0;
     public isDark = false;
-    public events = [
+    public events: any = [
         {
             title: 'Men\'s Calculators',
             children: [
