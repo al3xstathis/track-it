@@ -47,6 +47,13 @@ a {
   align-self: center;
 }
 
+ion-input {
+  border-radius: 8px;
+  width: 100%;
+  height: 100%;
+  --padding-start: 10px;
+}
+
 .email {
   border-radius: 10px;
   letter-spacing: 0.15em;
@@ -65,14 +72,13 @@ a {
   grid-row-end: 6;
 }
 
-.sc-ion-input-ios-h {
-  margin-left: 10px !important;
-}
-
 .password {
   border-radius: 10px;
   letter-spacing: 0.15em;
   font-size: 16px;
+  position: relative;
+  top: -25px;
+
   //mix-blend-mode: color-dodge;
 
   background-color: var(--ion-color-dark-tint);
