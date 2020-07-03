@@ -1,13 +1,12 @@
 import {NgModule} from '@angular/core';
 import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
-import {LoginComponent} from "./login/login.component";
-import {RegisterComponent} from "./register/register.component";
+import {LoginComponent} from './login/login.component';
+import {RegisterComponent} from './register/register.component';
 
 const routes: Routes = [
     {
         path: '',
-        redirectTo: 'decathlon',
-        pathMatch: 'full'
+        loadChildren: () => import('./loading/loading.module').then(m => m.LoadingPageModule)
     },
     {
         path: 'decathlon',
@@ -19,11 +18,11 @@ const routes: Routes = [
     },
     {
         path: 'm-heptathlon',
-        loadChildren: () => import('./m-heptathlon/m-heptathlon.module').then( m => m.MHeptathlonPageModule)
+        loadChildren: () => import('./m-heptathlon/m-heptathlon.module').then(m => m.MHeptathlonPageModule)
     },
     {
         path: 'f-pentathlon',
-        loadChildren: () => import('./f-pentathlon/f-pentathlon.module').then( m => m.FPentathlonPageModule)
+        loadChildren: () => import('./f-pentathlon/f-pentathlon.module').then(m => m.FPentathlonPageModule)
     },
     {
         path: 'runways',
@@ -35,11 +34,11 @@ const routes: Routes = [
     },
     {
         path: 'home',
-        loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+        loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
     },
     {
-    path: 'unit-converter',
-    loadChildren: () => import('./unit-converter/unit-converter.module').then( m => m.UnitConverterPageModule)
+        path: 'unit-converter',
+        loadChildren: () => import('./unit-converter/unit-converter.module').then(m => m.UnitConverterPageModule)
     },
     {
         path: 'login',
@@ -49,6 +48,10 @@ const routes: Routes = [
         path: 'register',
         component: RegisterComponent
     },
+  {
+    path: 'loading',
+    loadChildren: () => import('./loading/loading.module').then( m => m.LoadingPageModule)
+  },
 
 ];
 

@@ -9,25 +9,24 @@
   src: url('../assets/fonts/Roboto_Mono/RobotoMono-ThinItalic.ttf');
 }
 
-  :root {
+:root {
   --ion-font-family: 'Roboto';
 }
 
+/** dark **/
 :root {
-  /** light **/
-  --ion-color-dark: linear-gradient(180.06deg, #F2F2F2 0.02%, #EEEEEE 99.98%);
-  --ion-color-dark-rgb: 196, 196, 196;
-  --ion-color-dark-contrast: #000000;
-  --ion-color-dark-contrast-rgb: 0, 0, 0;
-  --ion-color-dark-shade: #acacac;
-  --ion-color-dark-tint: #cacaca;
-  --ion-text-color: var(--ion-color-dark-contrast);
-}
+  .light-mode {
+    /** light **/
+    --ion-color-dark: linear-gradient(180.06deg, #F2F2F2 0.02%, #EEEEEE 99.98%);
+    --ion-color-dark-rgb: 196, 196, 196;
+    --ion-color-dark-contrast: #000000;
+    --ion-color-dark-contrast-rgb: 0, 0, 0;
+    --ion-color-dark-shade: #acacac;
+    --ion-color-dark-tint: #cacaca;
+    --ion-text-color: var(--ion-color-dark-contrast);
+  }
 
-
-@media (prefers-color-scheme: dark) {
-  /** dark **/
-  :root {
+  .dark-mode {
     --ion-color-dark: linear-gradient(180deg, #08090A 0%, rgba(8, 9, 10, 0.9) 100%);
     --ion-color-dark-rgb: 8, 9, 10;
     --ion-color-dark-contrast: #ffffff;
@@ -37,4 +36,3 @@
     --ion-text-color: var(--ion-color-dark-contrast);
   }
 }
-
