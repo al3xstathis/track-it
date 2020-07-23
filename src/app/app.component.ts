@@ -43,9 +43,14 @@ export class AppComponent implements OnInit {
             ]
         },
         {
+            title: 'IAAF Points Calculator',
+            url: '/iaaf'
+        },
+        {
             title: 'Runways',
             url: '/runways'
         },
+
         {
             title: 'Saved Series',
             url: '/saved'

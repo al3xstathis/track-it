@@ -1,0 +1,56 @@
+.menu {
+  --box-shadow:none;
+}
+
+.header {
+  text-align: center;
+  font-size: 18px;
+  font-weight: lighter;
+  //letter-spacing: 0.1em;
+  //padding-top: 10px;
+  --box-shadow: none;
+  color: var(--ion-color-dark-contrast);
+}
+
+ion-header::after {
+  background-image: none;
+}
+
+
+ion-menu-button {
+  font-size: 40px !important;
+  color: var(--ion-color-dark-contrast);
+}
+
+ion-toolbar {
+  --background: transparent;
+}
+
+
+.no-shadow {
+  --box-shadow: none;
+  visibility: hidden;
+}
+
+.alignEnd {
+  text-align: end;
+}
+
+hr {
+  border: 1px solid var(--ion-color-dark-contrast);
+  height: unset;
+  margin-top: 5px;
+}
+
+ion-button {
+  color: var(--ion-color-dark);
+  --box-shadow: none;
+}
+
+ion-segment-button {
+  color: var(--ion-color-dark);
+}
+
+.my-custom-interface .select-interface-option {
+  color: var(--ion-color-dark-contrast);
+}

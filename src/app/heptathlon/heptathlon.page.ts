@@ -27,7 +27,7 @@ export class HeptathlonPage implements OnInit, OnDestroy {
 
     async presentToast() {
         const toast = await this.toastController.create({
-            message: 'Your settings have been saved.',
+            message: 'Your event has been saved.',
             duration: 2000
         });
         toast.present();

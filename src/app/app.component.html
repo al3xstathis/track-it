@@ -44,10 +44,10 @@
             </ion-content>
             <ion-footer>
                 <ion-row>
-                    <ion-col size="6" style="display: flex; align-items: center; color: white">
+                    <ion-col class="darkToggle" size="6" style="display: flex; align-items: center">
                         Dark Mode
                     </ion-col>
-                    <ion-col size="6" style="text-align: right">
+                    <ion-col class="darkToggle" size="6" style="text-align: right">
                         <ion-toggle [(ngModel)]="isDark"
                                     (ionChange)="darkModeToggle($event.detail.checked)"></ion-toggle>
                     </ion-col>

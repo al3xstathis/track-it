@@ -52,6 +52,10 @@ const routes: Routes = [
     path: 'loading',
     loadChildren: () => import('./loading/loading.module').then( m => m.LoadingPageModule)
   },
+  {
+    path: 'iaaf',
+    loadChildren: () => import('./iaaf/iaaf.module').then( m => m.IaafPageModule)
+  },
 
 ];
 

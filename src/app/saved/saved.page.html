@@ -24,9 +24,12 @@
                 <ion-col class="name">
                     <ion-label>{{saved.title}}</ion-label>
                 </ion-col>
-                <ion-col class="scores">
-                        <p>Day One: {{saved.dayOne}}<br> Day Two: {{saved.dayTwo}}<br> Total: {{saved.total}}</p>
+                <ion-col *ngIf="saved.type == 'fPent'" class="scores">
+                        <p> Total: {{saved.total}}</p>
                 </ion-col>
+              <ion-col *ngIf="saved.type != 'fPent'"  class="scores">
+                  <p>Day One: {{saved.dayOne}}<br> Day Two: {{saved.dayTwo}}<br> Total: {{saved.total}}</p>
+              </ion-col>
                 <ion-col class="openEvent" >
                     <ion-button size="large" class="noShadow" fill="clear" (click)="openAlert(saved)">
                         <ion-icon name="chevron-forward" class="icon"></ion-icon>

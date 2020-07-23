@@ -9,8 +9,8 @@
       Runways
     </ion-title>
 
-    <ion-button class="invisible" color="dark" slot="end">
-      <ion-menu-button size="large"></ion-menu-button>
+    <ion-button class="sort" color="none"  slot="end" (click)="sort()">
+      Sort
     </ion-button>
 
   </ion-toolbar>
@@ -29,19 +29,25 @@
   </ion-fab>
 
     <div *ngIf="runways">
-      <ion-card *ngFor="let runway of runways | async" (click)="edit(runway.title, runway.event, runway.runway, runway.steps, runway.id)">
+      <ion-card *ngFor="let runway of runways | async" (click)="edit(runway.title, runway.event, runway.runway, runway.steps, runway.id, runway.leftBlock, runway.rightBlock, runway.middleMark)">
         <ion-card-header>
-          <ion-card-title>
+          <ion-card-title *ngIf="runway.title != 'blocks'">
             {{runway.event}}, {{runway.steps}} steps
           </ion-card-title>
+          <ion-card-title *ngIf="runway.title == 'blocks'">
+            {{runway.event}}
+          </ion-card-title>
         </ion-card-header>
-          <ion-card-content>
+          <ion-card-content *ngIf="runway.title != 'blocks'">
             {{runway.runway}}
           </ion-card-content>
+        <ion-card-content *ngIf="runway.title == 'blocks'">
+          {{runway.leftBlock}} Left, {{runway.rightBlock}} Right, {{runway.middleMark}} Middle
+        </ion-card-content>
       </ion-card>
     </div>
 
-  <div *ngIf="runways == null">
+  <div *ngIf="!runways">
     <h1>You don't have any saved runways.</h1>
   </div>
 

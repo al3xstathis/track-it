@@ -120,7 +120,7 @@ export class SavedPage implements OnInit {
           cssClass: 'alert',
           buttons: [
               {
-                  text: 'Decathlon',
+                  text: 'Decathlon Men',
                   handler: async data => {
                       const id = (await this.user.currentUser).uid;
 
@@ -135,11 +135,41 @@ export class SavedPage implements OnInit {
                   }
               },
               {
-                  text: 'Heptathlon',
+                  text: 'Heptathlon Women',
                   handler: async data => {
                       const id = (await this.user.currentUser).uid;
 
                       this.savedCollection = this.db.collection('users').doc(id).collection<EventInterface>('saved', ref => ref.where('type', '==', 'fHep'));
+                      this.events = this.savedCollection.snapshotChanges().pipe(
+                          map(actions => actions.map(a => {
+                              const data = a.payload.doc.data() as EventInterface;
+                              const id = a.payload.doc.id;
+                              return { id, ...data };
+                          }))
+                      )
+                  }
+              },
+              {
+                  text: 'Heptathlon Men',
+                  handler: async data => {
+                      const id = (await this.user.currentUser).uid;
+
+                      this.savedCollection = this.db.collection('users').doc(id).collection<EventInterface>('saved', ref => ref.where('type', '==', 'mHep'));
+                      this.events = this.savedCollection.snapshotChanges().pipe(
+                          map(actions => actions.map(a => {
+                              const data = a.payload.doc.data() as EventInterface;
+                              const id = a.payload.doc.id;
+                              return { id, ...data };
+                          }))
+                      )
+                  }
+              },
+              {
+                  text: 'Pentathlon Women',
+                  handler: async data => {
+                      const id = (await this.user.currentUser).uid;
+
+                      this.savedCollection = this.db.collection('users').doc(id).collection<EventInterface>('saved', ref => ref.where('type', '==', 'fPent'));
                       this.events = this.savedCollection.snapshotChanges().pipe(
                           map(actions => actions.map(a => {
                               const data = a.payload.doc.data() as EventInterface;
@@ -176,7 +206,7 @@ export class SavedPage implements OnInit {
               this.router.navigateByUrl('/m-heptathlon');
               break;
           case 'fPent':
-              ContentService.setFPepContent(savedEvent);
+              ContentService.setFPentContent(savedEvent);
               this.router.navigateByUrl('f-pentathlon');
               break;
       }

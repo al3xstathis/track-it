@@ -88,45 +88,92 @@ export class RunwaysPage implements OnInit {
   }
 
   async presentAlert(event: string, eventName: string) {
-    const alert = await this.alert.create({
-      header: 'Save '+eventName+' runway',
-      cssClass: 'alert',
-      inputs: [
-        {
-          name: 'runway',
-          placeholder: 'Input runway:'
-        },
-        {
-          name: 'steps',
-          placeholder: 'Input steps:'
-        }
-      ],
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel'
-        },
-        {
-          text: 'Save',
-          handler: async data => {
-            const id1 = (await this.user.currentUser).uid;
-            await this.db.collection('users').doc(id1).collection('runways').add({
-              title: event,
-              event: eventName,
-              runway: data.runway,
-              steps: data.steps
-            }).catch(error => {
-                  console.log(error);
-                });
-            // await this.refresh(event);
-            await this.presentToast()
+    if(event != 'blocks') {
+      const alert = await this.alert.create({
+        header: 'Save ' + eventName + ' runway',
+        cssClass: 'alert',
+        inputs: [
+          {
+            name: 'runway',
+            placeholder: 'Input runway:'
+          },
+          {
+            name: 'steps',
+            placeholder: 'Input steps:'
           }
+        ],
+        buttons: [
+          {
+            text: 'Cancel',
+            role: 'cancel'
+          },
+          {
+            text: 'Save',
+            handler: async data => {
+              const id1 = (await this.user.currentUser).uid;
+              await this.db.collection('users').doc(id1).collection('runways').add({
+                title: event,
+                event: eventName,
+                runway: data.runway,
+                steps: data.steps
+              }).catch(error => {
+                console.log(error);
+              });
+              // await this.refresh(event);
+              await this.presentToast()
+            }
 
-        }
-      ]
-    });
+          }
+        ]
+      });
+      await alert.present();
+    }
+    else {
 
-    await alert.present();
+      const alert = await this.alert.create({
+        header: 'Save ' + eventName + ' runway',
+        cssClass: 'alert',
+        inputs: [
+          {
+            name: 'leftBlock',
+            placeholder: 'Input Left Block:'
+          },
+          {
+            name: 'rightBlock',
+            placeholder: 'Input Right Block:'
+          },
+          {
+            name: 'middleMark',
+            placeholder: 'Input Middle:'
+          }
+        ],
+        buttons: [
+          {
+            text: 'Cancel',
+            role: 'cancel'
+          },
+          {
+            text: 'Save',
+            handler: async data => {
+              const id1 = (await this.user.currentUser).uid;
+              await this.db.collection('users').doc(id1).collection('runways').add({
+                title: event,
+                event: eventName,
+                leftBlock: data.leftBlock,
+                rightBlock: data.rightBlock,
+                middleMark: data.middleMark
+              }).catch(error => {
+                console.log(error);
+              });
+              // await this.refresh(event);
+              await this.presentToast()
+            }
+
+          }
+        ]
+      });
+      await alert.present();
+    }
   }
 
   async init() {
@@ -143,54 +190,205 @@ export class RunwaysPage implements OnInit {
       )
   }
 
-  async edit(title: string, event: string, runway: string, steps: string, id: string ) {
+  //TODO implement edit and delete for block runway
+
+  async edit(title: string, event: string, runway: string, steps: string, id: string, leftBlock: string, rightBlock: string, middleMark: string) {
+    if(title != 'blocks') {
+      const alert = await this.alert.create({
+        header: 'Edit ' + event + ' runway',
+        cssClass: 'alert',
+        inputs: [
+          {
+            name: 'runway',
+            placeholder: 'Input runway:',
+            value: runway
+          },
+          {
+            name: 'steps',
+            placeholder: 'Input steps:',
+            value: steps
+          }
+        ],
+        buttons: [
+          {
+            text: 'Cancel',
+            role: 'cancel'
+          },
+          {
+            text: 'Delete',
+            handler: async data => {
+              const id1 = (await this.user.currentUser).uid;
+              await this.db.collection('users').doc(id1).collection('runways').doc(id).delete();
+            }
+          },
+          {
+            text: 'Save',
+            handler: async data => {
+              const id1 = (await this.user.currentUser).uid;
+              await this.db.collection('users').doc(id1).collection('runways').doc(id).set({
+                title: title,
+                event: event,
+                runway: data.runway,
+                steps: data.steps
+
+              }).catch(error => {
+                console.log(error);
+              });
+              // await this.refresh(event);
+              await this.presentToast()
+            }
+          }
+        ]
+      });
+
+      await alert.present();
+    }
+    else {
+
+      const alert = await this.alert.create({
+        header: 'Save ' + event + ' runway',
+        cssClass: 'alert',
+        inputs: [
+          {
+            name: 'leftBlock',
+            placeholder: 'Input Left Block:',
+            value: leftBlock
+          },
+          {
+            name: 'rightBlock',
+            placeholder: 'Input Right Block:',
+            value: rightBlock
+          },
+          {
+            name: 'middleMark',
+            placeholder: 'Input Middle:',
+            value: middleMark
+          }
+        ],
+        buttons: [
+          {
+            text: 'Cancel',
+            role: 'cancel'
+          },
+          {
+            text: 'Delete',
+            handler: async data => {
+              const id1 = (await this.user.currentUser).uid;
+              await this.db.collection('users').doc(id1).collection('runways').doc(id).delete();
+            }
+          },
+          {
+            text: 'Save',
+            handler: async data => {
+              const id1 = (await this.user.currentUser).uid;
+              await this.db.collection('users').doc(id1).collection('runways').doc(id).set({
+                title: title,
+                event: event,
+                leftBlock: data.leftBlock,
+                rightBlock: data.rightBlock,
+                middleMark: data.middleMark
+              }).catch(error => {
+                console.log(error);
+              });
+              // await this.refresh(event);
+              await this.presentToast()
+            }
+
+          }
+        ]
+      });
+      await alert.present();
+    }
+  }
+
+  async sort() {
     const alert = await this.alert.create({
-      header: 'Edit '+event+' runway',
+      header: 'Sort by:',
       cssClass: 'alert',
-      inputs: [
-        {
-          name: 'runway',
-          placeholder: 'Input runway:',
-          value: runway
-        },
-        {
-          name: 'steps',
-          placeholder: 'Input steps:',
-          value: steps
-        }
-      ],
       buttons: [
         {
-          text: 'Cancel',
-          role: 'cancel'
-        },
-        {
-          text: 'Delete',
+          text: 'Long Jump',
           handler: async data => {
-            const id1 = (await this.user.currentUser).uid;
-            await this.db.collection('users').doc(id1).collection('runways').doc(id).delete();
+            const id = (await this.user.currentUser).uid;
+
+            this.runwaysCollection = this.db.collection('users').doc(id).collection<RunwayInterface>('runways', ref => ref.where('title', '==', 'longJump'));
+            this.runways = this.runwaysCollection.snapshotChanges().pipe(
+                map(actions => actions.map(a => {
+                  const data = a.payload.doc.data() as RunwayInterface;
+                  const id = a.payload.doc.id;
+                  return { id, ...data };
+                }))
+            )
           }
         },
         {
-          text: 'Save',
+          text: 'High Jump',
           handler: async data => {
-            const id1 = (await this.user.currentUser).uid;
-            await this.db.collection('users').doc(id1).collection('runways').doc(id).set({
-              title: title,
-              event: event,
-              runway: data.runway,
-              steps: data.steps
+            const id = (await this.user.currentUser).uid;
 
-            }).catch(error => {
-              console.log(error);
-            });
-            // await this.refresh(event);
-            await this.presentToast()
+            this.runwaysCollection = this.db.collection('users').doc(id).collection<RunwayInterface>('runways', ref => ref.where('title', '==', 'highJump'));
+            this.runways = this.runwaysCollection.snapshotChanges().pipe(
+                map(actions => actions.map(a => {
+                  const data = a.payload.doc.data() as RunwayInterface;
+                  const id = a.payload.doc.id;
+                  return { id, ...data };
+                }))
+            )
+          }
+        },
+        {
+          text: 'Triple Jump',
+          handler: async data => {
+            const id = (await this.user.currentUser).uid;
+
+            this.runwaysCollection = this.db.collection('users').doc(id).collection<RunwayInterface>('runways', ref => ref.where('title', '==', 'tripleJump'));
+            this.runways = this.runwaysCollection.snapshotChanges().pipe(
+                map(actions => actions.map(a => {
+                  const data = a.payload.doc.data() as RunwayInterface;
+                  const id = a.payload.doc.id;
+                  return { id, ...data };
+                }))
+            )
+          }
+        },
+        {
+          text: 'Pole Vault',
+          handler: async data => {
+            const id = (await this.user.currentUser).uid;
+
+            this.runwaysCollection = this.db.collection('users').doc(id).collection<RunwayInterface>('runways', ref => ref.where('title', '==', 'poleVault'));
+            this.runways = this.runwaysCollection.snapshotChanges().pipe(
+                map(actions => actions.map(a => {
+                  const data = a.payload.doc.data() as RunwayInterface;
+                  const id = a.payload.doc.id;
+                  return { id, ...data };
+                }))
+            )
+          }
+        },
+        {
+          text: 'Javelin',
+          handler: async data => {
+            const id = (await this.user.currentUser).uid;
+
+            this.runwaysCollection = this.db.collection('users').doc(id).collection<RunwayInterface>('runways', ref => ref.where('title', '==', 'javelin'));
+            this.runways = this.runwaysCollection.snapshotChanges().pipe(
+                map(actions => actions.map(a => {
+                  const data = a.payload.doc.data() as RunwayInterface;
+                  const id = a.payload.doc.id;
+                  return { id, ...data };
+                }))
+            )
+          }
+        },
+        {
+          text: 'All',
+          handler: async data => {
+            await this.init();
           }
         }
       ]
     });
-
     await alert.present();
   }
 

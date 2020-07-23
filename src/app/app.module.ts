@@ -11,7 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from "@angular/common/http";
 
 import { AngularFireModule } from '@angular/fire';
-import { firebaseConfig } from '../environments/environment';
+import { firebaseConfig, environment } from '../environments/environment';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AuthService} from "../services/auth.service";
 
@@ -20,6 +20,7 @@ import {LoginComponent} from "./login/login.component";
 import {RegisterComponent} from "./register/register.component";
 import {AngularFirestoreModule} from "@angular/fire/firestore";
 import {GooglePlus} from "@ionic-native/google-plus/ngx";
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import {GooglePlus} from "@ionic-native/google-plus/ngx";
     AngularFirestoreModule.enablePersistence(),
     FormsModule,
     ReactiveFormsModule,
-    RouterModule
+    RouterModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
     StatusBar,

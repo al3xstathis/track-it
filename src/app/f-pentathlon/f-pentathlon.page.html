@@ -1,9 +1,123 @@
-<ion-header>
+<ion-header translucent="true" collapse>
   <ion-toolbar>
-    <ion-title>fPentathlon</ion-title>
+
+    <ion-button class="menu" color="none"  slot="start">
+      <ion-menu-button size="large"></ion-menu-button>
+    </ion-button>
+
+    <ion-title class="header">
+      Women Pentathlon
+    </ion-title>
+
+    <ion-button class="save" *ngIf="!dataIn.id" (click)="presentPrompt()" color="none"  slot="end">
+      Save
+    </ion-button>
+    <ion-button class="save" *ngIf="dataIn.id" (click)="save()" color="none"  slot="end">
+      Save
+    </ion-button>
+
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content color="dark" fullscreen>
+  <hr>
+
+  <!--If we are editing a saved event then the title of the event should appear at the top-->
+  <ion-title *ngIf="dataIn.id != ''" class="eventTitle">{{dataIn.title}}</ion-title>
+  <hr *ngIf="dataIn.id != ''">
+
+  <div class="titles">
+    <div class="event">
+      <a>Event</a>
+    </div>
+    <div class="result">
+      <a>Result</a>
+    </div>
+    <div class="score">
+      <a>Score</a>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="calculatorContainer">
+
+    <!-- Label divs-->
+    <div class="hurdles-label">
+      <a>60mh</a>
+    </div>
+    <div class="hj-label">
+      <a>High Jump</a>
+    </div>
+    <div class="sp-label">
+      <a>Shot Put</a>
+    </div>
+    <div class="lj-label">
+      <a>Long Jump</a>
+    </div>
+    <div class="eight-label">
+      <a>800m</a>
+    </div>
+
+
+    <!--Input divs-->
+
+    <div class="hurdles-input">
+      <ion-input maxlength="6" placeholder="8.70s" [(ngModel)]="dataIn.hurdles" (ionChange)="updateScore()" ></ion-input>
+    </div>
+    <div class="sp-input">
+      <ion-input maxlength="5" placeholder="12.00m" [(ngModel)]="dataIn.sp" (ionChange)="updateScore()" ></ion-input>
+    </div>
+    <div class="hj-input">
+      <ion-input maxlength="4" placeholder="1.75m" [(ngModel)]="dataIn.hj" (ionChange)="updateScore()" ></ion-input>
+    </div>
+    <div class="lj-input">
+      <ion-input maxlength="4" placeholder="5.75m" [(ngModel)]="dataIn.lj" (ionChange)="updateScore()" ></ion-input>
+    </div>
+    <div class="eight-input">
+      <ion-input maxlength="7" placeholder="2:20.00" [(ngModel)]="dataIn.eight" (ionBlur)="updateScore()" ></ion-input>
+    </div>
+
+    <!--output divs        -->
+    <div class="hurdles-output">
+      {{dataOut.hurdles}}
+    </div>
+    <div class="hj-output">
+      {{dataOut.hj}}
+    </div>
+    <div class="sp-output">
+      {{dataOut.sp}}
+    </div>
+    <div class="lj-output">
+      {{dataOut.lj}}
+    </div>
+    <div class="eight-output">
+      {{dataOut.eight}}
+    </div>
+
+  </div>
+
+  <hr>
+
+  <div class="totals">
+    <!--Totals-->
+    <div class="total">
+      <a>
+        Total :
+      </a>
+    </div>
+
+    <div class="totalScore">
+      {{dataOut.totalScore}}
+    </div>
+
+  </div>
+  <!--    clear button-->
+  <div  (click)="clear()">
+    <ion-button class="clear" expand="full" fill="clear">
+
+      CLEAR
+    </ion-button>
+  </div>
 
 </ion-content>

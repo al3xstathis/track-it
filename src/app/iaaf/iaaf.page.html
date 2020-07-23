@@ -1,0 +1,56 @@
+<ion-header translucent="true" collapse>
+  <ion-toolbar>
+
+    <ion-button class="menu" color="none"  slot="start">
+      <ion-menu-button size="large"></ion-menu-button>
+    </ion-button>
+
+    <ion-title class="header">
+      IAAF Points Calculator
+    </ion-title>
+
+      <ion-button class="no-shadow" color="none" slot="end" >
+        <ion-menu-button size="large"></ion-menu-button>
+      </ion-button>
+
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="dark" fullscreen>
+  <ion-segment>
+    <ion-segment-button>MEN</ion-segment-button>
+    <ion-segment-button>WOMEN</ion-segment-button>
+  </ion-segment>
+
+  <ion-item class="transparent" color="none">
+    <ion-label>Select Event:</ion-label>
+    <ion-select class="custom-options" [interfaceOptions]="customAlertOptions" placeholder="Select event" [(ngModel)]="selectedEvents">
+      <ion-select-option value="event" *ngFor="let event of menEvents">{{event.name}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+
+  <ion-item color="none" lines="none">
+    <ion-label>
+      Performance:
+    </ion-label>
+
+    <ion-input placeholder="Input performance" clearInput="true" class="alignEnd">
+
+    </ion-input>
+  </ion-item>
+
+  <ion-item color="none" lines="none">
+    <ion-label>
+      Points:
+    </ion-label>
+    <ion-input readonly="true" class="alignEnd">
+
+    </ion-input>
+  </ion-item>
+  <ion-button color="none" expand="full">Compare</ion-button>
+  <hr>
+
+
+</ion-content>
