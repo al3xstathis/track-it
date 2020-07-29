@@ -6,8 +6,7 @@
   text-align: center;
   font-size: 18px;
   font-weight: lighter;
-  //letter-spacing: 0.1em;
-  //padding-top: 10px;
+
   --box-shadow: none;
   color: var(--ion-color-dark-contrast);
 }
@@ -23,7 +22,7 @@ ion-menu-button {
 }
 
 ion-toolbar {
-  --background: transparent;
+  --background: var(--ion-color-dark-solid);
 }
 
 
@@ -39,18 +38,31 @@ ion-toolbar {
 hr {
   border: 1px solid var(--ion-color-dark-contrast);
   height: unset;
-  margin-top: 5px;
+  margin-top: 0;
 }
 
 ion-button {
-  color: var(--ion-color-dark);
+  color: var(--ion-text-color);
   --box-shadow: none;
 }
 
-ion-segment-button {
-  color: var(--ion-color-dark);
-}
+
 
 .my-custom-interface .select-interface-option {
-  color: var(--ion-color-dark-contrast);
+  color: var(--ion-text-color);
 }
+
+.transparent {
+  background-color: transparent;
+}
+
+.compareButton {
+  color: var(--ion-text-color);
+}
+
+ion-segment-button {
+  color: var(--ion-color-dark-contrast);
+  --indicator-color: var(--ion-color-dark-contrast)
+}
+
+

@@ -14,22 +14,14 @@ export class ContentService {
   static setDecContent(value) {
     ContentService.mDecValues = value;
   }
-
   static setHepContent(value) {
     ContentService.fHepValues = value;
   }
   static setMHepContent(value) {
     ContentService.mHepValues = value;
   }
-  static setFPepContent(value) {
+  static setFPentContent(value) {
     ContentService.fPentValues = value;
   }
 
-  static getDecContent() {
-    return ContentService.mDecValues;
-  }
-
-  static getHepContent() {
-    return ContentService.fHepValues;
-  }
 }

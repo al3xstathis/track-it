@@ -56,7 +56,7 @@ ion-menu-button {
 }
 
 ion-toolbar {
-  --background: transparent;
+  --background: var(--ion-color-dark-solid);
 }
 
 .titles {
