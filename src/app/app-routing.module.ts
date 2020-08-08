@@ -33,10 +33,6 @@ const routes: Routes = [
         loadChildren: () => import('./saved/saved.module').then(m => m.SavedPageModule)
     },
     {
-        path: 'home',
-        loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
-    },
-    {
         path: 'unit-converter',
         loadChildren: () => import('./unit-converter/unit-converter.module').then(m => m.UnitConverterPageModule)
     },

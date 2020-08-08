@@ -28,7 +28,6 @@ ion-toolbar {
 
 .no-shadow {
   --box-shadow: none;
-  visibility: hidden;
 }
 
 .alignEnd {
@@ -66,4 +65,8 @@ ion-segment-button {
   --indicator-color: var(--ion-color-dark-contrast)
 }
 
-
+.eventsCompare {
+  text-align:  center;
+  font-size: larger;
+  padding: 15px;
+}

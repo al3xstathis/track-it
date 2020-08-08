@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AvsService} from "../../services/avs.service";
+import {AlertController} from "@ionic/angular";
 
 
 @Component({
@@ -507,40 +508,74 @@ export class IaafPage implements OnInit {
     }
   ]
   public return: string[];
-
+  public comparedEvents: { sexe: number, season: string, event: number, perf: string }[] = [
+    { "sexe": 1, "season": "Outdoor", "event": 0 , "perf":""},
+    { "sexe": 2, "season": "Outdoor", "event": 0 , "perf":""},
+    { "sexe": 1, "season": "Outdoor", "event": 0 , "perf":""}
+  ];
 
   customAlertOptions: any = {
     header: 'Choose an event:',
     cssClass: 'alert'
   }
 
-  constructor(private avs: AvsService) {
+  constructor(private avs: AvsService,
+              private alertCtrl: AlertController) {
     this.numbers = [1];
 
   }
 
-
-
-
-  addEvent() {
-    this.numbers.push(this.numbers[this.numbers.length-1]+1);
+  comparedToString(): string {
+    return ("1-" + this.comparedEvents[0].event + "-" + this.comparedEvents[0].sexe + "-" + this.comparedEvents[0].season + ";" +
+        "2-" + this.comparedEvents[1].event + "-" + this.comparedEvents[1].sexe + "-" + this.comparedEvents[1].season + ";" +
+        "3-" + this.comparedEvents[2].event + "-" + this.comparedEvents[2].sexe + "-" + this.comparedEvents[2].season).toString()
   }
 
-  compare() {
+  async presentPrompt() {
+    const alert = await this.alertCtrl.create({
+      header: 'Information about IAAF Calculator',
+      message: 'This is a calculator that uses the IAAF scoring tables to compare events.<br>Select a sex, season, the event in question, input your performance and click Calculate to obtain an IAAF score.<br>After this, choose up to 3 different events you would like to compare this performance to and hit Compare to see an equivalent performance in those events.<br>',
+      cssClass: 'alert',
 
+      buttons: [
+        {
+          text: 'Close',
+          role: 'cancel'
+        }],
+    });
+
+    await alert.present();
   }
+
+
+
   async getScore(type:number) {
-    await this.avs.getScore(this.sexe.toString(),this.season,this.perf,this.selectedEvent.toString(), type.toString(), '1-64-1-Outdoor');
+    if(type == 1) {
+      await this.avs.getScore(this.sexe.toString(), this.season, this.perf, this.selectedEvent.toString(), type.toString(), this.comparedToString());
+      setTimeout(a => {
+        this.parseScore();
+      }, 500);
+    }
+    if(type == 2) {
+      await this.avs.compareScore(this.sexe.toString(), this.season, this.perf, this.selectedEvent.toString(), type.toString(), this.comparedToString(), this.score);
+      setTimeout(a => {
+        this.parseCompare();
+      }, 500);
+    }
 
-    setTimeout(a => {
-      this.parseScore();
-    }, 500);
 
   }
   parseScore() {
     for (let i = 0; i < AvsService.postReturnSplit.length; i++) {
       this.score = AvsService.postReturnSplit[0];
       console.log(AvsService.postReturnSplit[i]);
+    }
+  }
+  parseCompare() {
+    for (let i = 0; i < AvsService.postReturnSplit.length-1; i++) {
+      const split = AvsService.postReturnSplit[i+1].split('-');
+      this.comparedEvents[i].perf = split[1];
+      console.log(split);
     }
   }
 

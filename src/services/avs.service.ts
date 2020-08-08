@@ -27,14 +27,27 @@ export class AvsService {
 
     await this.http.post(this.url, form, {responseType: "text"}).subscribe(res => {
       this.postReturn = res;
-      console.log(this.postReturn);
       AvsService.postReturnSplit = this.postReturn.split(';');
-      console.log(AvsService.postReturnSplit);
     })
 
   }
-  public compareScore() {
 
+  async compareScore(sexe: string, season:string, perf: string, event: string, type: string, compare: string, points: string) {
+
+
+    const form = new FormData;
+    form.append('event',event);
+    form.append('sexe', sexe);
+    form.append('perf', perf);
+    form.append('season', season);
+    form.append('type', type);
+    form.append('compare', compare);
+    form.append('points', points)
+
+    await this.http.post(this.url, form, {responseType: "text"}).subscribe(res => {
+      this.postReturn = res;
+      AvsService.postReturnSplit = this.postReturn.split(';');
+    })
   }
 
 }

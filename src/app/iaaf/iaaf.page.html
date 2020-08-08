@@ -9,8 +9,8 @@
       IAAF Points Calculator
     </ion-title>
 
-      <ion-button class="no-shadow" color="none" slot="end" >
-        <ion-menu-button size="large"></ion-menu-button>
+      <ion-button class="no-shadow" color="none" slot="end" (click)="presentPrompt()">
+        INFO
       </ion-button>
 
   </ion-toolbar>
@@ -77,28 +77,44 @@
 
 
 <!--  events to compare to-->
-  <ion-button expand="block"  color="dark" (click)="addEvent()">Add event to compare</ion-button>
+  <ion-header class="eventsCompare">Events to compare</ion-header>
+<!--  <ion-button expand="block"  color="dark" (click)="addEvent()">Add event to compare</ion-button>-->
 
-  <ion-item class="transparent" color="none" *ngFor="let number of numbers">
+  <ion-item class="transparent" color="none" *ngFor="let event of comparedEvents;index as i">
 
-        <ion-label >{{number}}</ion-label>
+        <ion-label>{{i+1}}</ion-label>
 
-        <ion-select class="custom-options" [interfaceOptions]="customAlertOptions" placeholder="Select season:" >
+        <ion-select class="custom-options" [interfaceOptions]="customAlertOptions" placeholder="Select season:" [(ngModel)]="comparedEvents[i].season">
           <ion-select-option value="Outdoor">Outdoor</ion-select-option>
           <ion-select-option value="Indoor">Indoor</ion-select-option>
         </ion-select>
 
-        <ion-select class="custom-options" [interfaceOptions]="customAlertOptions" placeholder="Select sex:" >
-          <ion-select-option value="2">Men</ion-select-option>
-          <ion-select-option value="1">Women</ion-select-option>
-        </ion-select>
-
-        <ion-select class="custom-options" [interfaceOptions]="customAlertOptions" placeholder="Select event:" >
-          <ion-select-option value="{{event.value}}" *ngFor="let event of menEventsOutdoor">{{event.name}}</ion-select-option>
+        <ion-select class="custom-options" [interfaceOptions]="customAlertOptions" placeholder="Select sex:" [(ngModel)]="comparedEvents[i].sexe">
+          <ion-select-option value=2>Men</ion-select-option>
+          <ion-select-option value=1>Women</ion-select-option>
         </ion-select>
 
 
-        <ion-input readonly="true"></ion-input>
+          <!--    men outdoor-->
+          <ion-select *ngIf="comparedEvents[i].sexe ==2 && comparedEvents[i].season == 'Outdoor'" class="custom-options" [interfaceOptions]="customAlertOptions" placeholder="Select event" [(ngModel)]="comparedEvents[i].event">
+            <ion-select-option  value="{{event.value}}" *ngFor="let event of menEventsOutdoor">{{event.name}}</ion-select-option>
+          </ion-select>
+          <!--    men indoor-->
+          <ion-select *ngIf="comparedEvents[i].sexe ==2 && comparedEvents[i].season == 'Indoor'" class="custom-options" [interfaceOptions]="customAlertOptions" placeholder="Select event" [(ngModel)]="comparedEvents[i].event">
+            <ion-select-option  value="{{event.value}}" *ngFor="let event of menEventsIndoor">{{event.name}}</ion-select-option>
+          </ion-select>
+          <!--    women indoor-->
+          <ion-select *ngIf="comparedEvents[i].sexe ==1 && comparedEvents[i].season == 'Outdoor'" class="custom-options" [interfaceOptions]="customAlertOptions" placeholder="Select event" [(ngModel)]="comparedEvents[i].event">
+            <ion-select-option  value="{{event.value}}" *ngFor="let event of womenEventsOutdoor">{{event.name}}</ion-select-option>
+          </ion-select>
+          <!--    women outdoor-->
+          <ion-select *ngIf="comparedEvents[i].sexe ==1 && comparedEvents[i].season == 'Indoor'" class="custom-options" [interfaceOptions]="customAlertOptions"  placeholder="Select event" [(ngModel)]="comparedEvents[i].event">
+            <ion-select-option  value="{{event.value}}" *ngFor="let event of womenEventsIndoor">{{event.name}}</ion-select-option>
+          </ion-select>
+
+
+
+        <ion-input class="alignEnd" readonly="true" [ngModel]="event.perf" *ngIf="event.perf"></ion-input>
 
 
   </ion-item>
@@ -109,6 +125,6 @@
 
 <ion-footer>
   <ion-toolbar >
-    <ion-button class="compareButton" fill="clear" color="none" expand="full" (click)="compare()">Compare events</ion-button>
+    <ion-button class="compareButton" fill="clear" color="none" expand="full" (click)="getScore(2)">Compare events</ion-button>
   </ion-toolbar>
 </ion-footer>
