@@ -39,11 +39,12 @@ hr {
   border: 1px solid var(--ion-color-dark-contrast);
   height: unset;
   margin-top: 0;
+  margin-bottom: 0;
 }
 
 ion-button {
-  color: var(--ion-text-color);
-  --box-shadow: none;
+  --border-color: rgba(146, 146, 146, 0.81);
+  --color: var(--ion-color-dark-contrast);
 }
 
 

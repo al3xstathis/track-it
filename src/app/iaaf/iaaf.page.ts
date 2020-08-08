@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {AvsService} from "../../services/avs.service";
+
 
 @Component({
   selector: 'app-iaaf',
@@ -8,523 +9,541 @@ import {HttpClient} from "@angular/common/http";
 })
 export class IaafPage implements OnInit {
 
-  //default
+  //default men
   public sexe : number = 2;
-  //default
-  public season : string = 'outdoor';
+  //default outdoor
+  public season : string = 'Outdoor';
   public numbers: number[];
-  public selectedEvent: string;
-  public result: string;
+  public selectedEvent: number = 0;
+  public perf: string = "";
+  public score: string = "";
+
   public menEventsOutdoor: any = [
     {
       name: "100m",
-      value: "100m"
+      value: 7
     },
     {
       name: "110mh",
-      value: "110mh"
+      value: 18
     },
     {
       name: "200m",
-      value: "200m"
+      value: 9
     },
     {
       name: "300m",
-      value: "300m"
+      value: 10
     },
     {
       name: "4x100m Relay",
-      value: "4x100m"
+      value: 64
     },
     {
       name: "400m",
-      value: "400m"
+      value: 11
     },
     {
       name: "400mh",
-      value: "400m"
+      value: 22
     },
     {
       name: "600m",
-      value: "600m"
+      value: 23
     },
     {
       name: "800m",
-      value: "800m"
+      value: 24
     },
     {
       name: "1000m",
-      value: "1000m"
+      value: 25
     },
     {
       name: "1500m",
-      value: "1500m"
+      value: 27
     },
     {
       name: "4x400m Relay",
-      value: "4x400m"
+      value: 66
     },
     {
       name: "Mile",
-      value: "mile"
+      value: 28
     },
     {
       name: "2000m",
-      value: "2000m"
+      value: 29
     },
     {
       name: "2000m SC",
-      value: "2000m sc"
+      value: 37
     },
     {
       name: "3000m",
-      value: "3000m"
+      value: 30
     },
     {
       name: "3000m RW",
-      value: "3000m rw"
+      value: 56
     },
     {
       name: "3000m SC",
-      value: "3000sc"
+      value: 38
     },
     {
       name: "5000m",
-      value: "5000m"
+      value: 39
     },
     {
       name: "5000m RW",
-      value: "5000m rw"
+      value: 57
     },
     {
       name: "10000m",
-      value: "10000m"
+      value: 40
     },
     {
       name: "10000m RW",
-      value: "10000m rw"
+      value: 121
     },
     {
       name: "10km Road",
-      value: "10km road"
+      value: 45
     },
     {
       name: "15km Road",
-      value: "15km road"
+      value: 47
     },
     {
       name: "20km Walk",
-      value: "20km walk"
+      value: 59
     },
     {
       name: "20km Road",
-      value: "20km road"
+      value: 48
     },
     {
       name: "Half Marathon",
-      value: "halfMarathon"
+      value: 49
     },
     {
       name: "Marathon",
-      value: "marathon"
+      value: 50
     },
     {
       name: "50km Walk",
-      value: "50km walk"
+      value: 60
     },
     {
       name: "Long Jump",
-      value: "lj"
+      value: 77
     },
     {
       name: "High Jump",
-      value: "hj"
+      value: 78
     },
     {
       name: "Triple Jump",
-      value: "tj"
+      value: 79
     },
     {
       name: "Pole Vault",
-      value: "pv"
+      value: 80
     },
     {
       name: "Shot Put",
-      value: "sp"
+      value: 81
     },
     {
       name: "Discus Throw",
-      value: "dt"
+      value: 82
     },
     {
       name: "Javelin Throw",
-      value: "jt"
+      value: 83
     },
     {
       name: "Hammer Throw",
-      value: "ht"
+      value: 84
     },
     {
       name: "Decathlon",
-      value: "dec"
+      value: 94
     }
   ]
   public menEventsIndoor: any = [
     {
       name: "60m",
-      value: "60m"
+      value: 5
     },
     {
       name: "200m",
-      value: "200m"
+      value: 9
     },
     {
       name: "300m",
-      value: "300m"
+      value: 10
     },
     {
       name: "400m",
-      value: "400m"
+      value: 11
     },
     {
       name: "500m",
-      value: "500m"
+      value: 119
     },
     {
       name: "600m",
-      value: "600m"
+      value: 23
     },
     {
       name: "4x200m Relay",
-      value: "4x200m"
+      value: 65
     },
     {
       name: "800m",
-      value: "800m"
+      value: 24
     },
     {
       name: "1000m",
-      value: "1000m"
+      value: 25
     },
     {
       name: "1500m",
-      value: "1500m"
+      value: 27
     },
     {
       name: "4x400m Relay",
-      value: "4x400m"
+      value: 66
     },
     {
       name: "Mile",
-      value: "mile"
+      value: 28
     },
     {
       name: "2000m",
-      value: "2000m"
+      value: 29
     },
     {
       name: "3000m",
-      value: "3000m"
+      value: 30
     },
     {
       name: "5000m",
-      value: "5000m"
+      value: 39
     },
     {
       name: "60mh",
-      value: "60mh"
+      value: 15
     },
     {
       name: "Long Jump",
-      value: "lj"
+      value: 77
     },
     {
       name: "High Jump",
-      value: "hj"
+      value: 78
     },
     {
       name: "Triple Jump",
-      value: "tj"
+      value: 79
     },
     {
       name: "Pole Vault",
-      value: "pv"
+      value: 80
     },
     {
       name: "Shot Put",
-      value: "sp"
+      value: 81
     },
     {
       name: "Heptathlon",
-      value: "hep"
+      value: 92
     }
   ]
   public womenEventsOutdoor: any = [
     {
       name: "100m",
-      value: "100m"
+      value: 7
     },
     {
       name: "100mh",
-      value: "100mh"
+      value: 17
     },
     {
       name: "200m",
-      value: "200m"
+      value: 9
     },
     {
       name: "300m",
-      value: "300m"
+      value: 10
     },
     {
       name: "4x100m Relay",
-      value: "4x100m"
+      value: 64
     },
     {
       name: "400m",
-      value: "400m"
+      value: 11
     },
     {
       name: "400mh",
-      value: "400m"
+      value: 22
     },
     {
       name: "600m",
-      value: "600m"
+      value: 23
     },
     {
       name: "800m",
-      value: "800m"
+      value: 24
     },
     {
       name: "1000m",
-      value: "1000m"
+      value: 25
     },
     {
       name: "1500m",
-      value: "1500m"
+      value: 27
     },
     {
       name: "4x400m Relay",
-      value: "4x400m"
+      value: 66
     },
     {
       name: "Mile",
-      value: "mile"
+      value: 28
     },
     {
       name: "2000m",
-      value: "2000m"
+      value: 29
     },
     {
       name: "2000m SC",
-      value: "2000m sc"
+      value: 37
     },
     {
       name: "3000m",
-      value: "3000m"
+      value: 30
     },
     {
       name: "3000m RW",
-      value: "3000m rw"
+      value: 56
     },
     {
       name: "3000m SC",
-      value: "3000sc"
+      value: 38
     },
     {
       name: "5000m",
-      value: "5000m"
+      value: 39
     },
     {
       name: "5000m RW",
-      value: "5000m rw"
+      value: 57
     },
     {
       name: "10000m",
-      value: "10000m"
+      value: 40
     },
     {
       name: "10000m RW",
-      value: "10000m rw"
+      value: 121
     },
     {
       name: "10km Road",
-      value: "10km road"
+      value: 45
     },
     {
       name: "15km Road",
-      value: "15km road"
+      value: 47
     },
     {
       name: "20km Walk",
-      value: "20km walk"
+      value: 59
     },
     {
       name: "20km Road",
-      value: "20km road"
+      value: 48
     },
     {
       name: "Half Marathon",
-      value: "halfMarathon"
+      value: 49
     },
     {
       name: "Marathon",
-      value: "marathon"
+      value: 50
     },
     {
       name: "50km Walk",
-      value: "50km walk"
+      value: 60
     },
     {
       name: "Long Jump",
-      value: "lj"
+      value: 77
     },
     {
       name: "High Jump",
-      value: "hj"
+      value: 78
     },
     {
       name: "Triple Jump",
-      value: "tj"
+      value: 79
     },
     {
       name: "Pole Vault",
-      value: "pv"
+      value: 80
     },
     {
       name: "Shot Put",
-      value: "sp"
+      value: 81
     },
     {
       name: "Discus Throw",
-      value: "dt"
+      value: 82
     },
     {
       name: "Javelin Throw",
-      value: "jt"
+      value: 83
     },
     {
       name: "Hammer Throw",
-      value: "ht"
+      value: 84
     },
     {
       name: "Heptathlon",
-      value: "hep"
+      value: 92
     }
   ]
   public womenEventsIndoor: any = [
     {
       name: "60m",
-      value: "60m"
+      value: 5
     },
     {
       name: "200m",
-      value: "200m"
+      value: 9
     },
     {
       name: "300m",
-      value: "300m"
+      value: 10
     },
     {
       name: "400m",
-      value: "400m"
+      value: 11
     },
     {
       name: "500m",
-      value: "500m"
+      value: 119
     },
     {
       name: "600m",
-      value: "600m"
+      value: 23
     },
     {
       name: "4x200m Relay",
-      value: "4x200m"
+      value: 65
     },
     {
       name: "800m",
-      value: "800m"
+      value: 24
     },
     {
       name: "1000m",
-      value: "1000m"
+      value: 25
     },
     {
       name: "1500m",
-      value: "1500m"
+      value: 27
     },
     {
       name: "4x400m Relay",
-      value: "4x400m"
+      value: 66
     },
     {
       name: "Mile",
-      value: "mile"
+      value: 28
     },
     {
       name: "2000m",
-      value: "2000m"
+      value: 29
     },
     {
       name: "3000m",
-      value: "3000m"
+      value: 30
     },
     {
       name: "5000m",
-      value: "5000m"
+      value: 39
     },
     {
       name: "60mh",
-      value: "60mh"
+      value: 15
     },
     {
       name: "Long Jump",
-      value: "lj"
+      value: 77
     },
     {
       name: "High Jump",
-      value: "hj"
+      value: 78
     },
     {
       name: "Triple Jump",
-      value: "tj"
+      value: 79
     },
     {
       name: "Pole Vault",
-      value: "pv"
+      value: 80
     },
     {
       name: "Shot Put",
-      value: "sp"
+      value: 81
     },
     {
       name: "Pentathlon",
-      value: "pent"
+      value: 90
     }
   ]
+  public return: string[];
+
 
   customAlertOptions: any = {
     header: 'Choose an event:',
     cssClass: 'alert'
   }
 
-  constructor(private http: HttpClient) {
+  constructor(private avs: AvsService) {
     this.numbers = [1];
+
   }
+
+
 
 
   addEvent() {
     this.numbers.push(this.numbers[this.numbers.length-1]+1);
-    console.log(this.numbers.length);
   }
 
   compare() {
 
   }
-  calculate() {
-    console.log(this.sexe, this.season, this.selectedEvent, 1)
+  async getScore(type:number) {
+    await this.avs.getScore(this.sexe.toString(),this.season,this.perf,this.selectedEvent.toString(), type.toString(), '1-64-1-Outdoor');
+
+    setTimeout(a => {
+      this.parseScore();
+    }, 500);
+
   }
+  parseScore() {
+    for (let i = 0; i < AvsService.postReturnSplit.length; i++) {
+      this.score = AvsService.postReturnSplit[0];
+      console.log(AvsService.postReturnSplit[i]);
+    }
+  }
+
   ngOnInit() {
   }
 

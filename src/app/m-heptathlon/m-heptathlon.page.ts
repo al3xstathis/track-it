@@ -30,7 +30,7 @@ export class MHeptathlonPage implements OnInit, OnDestroy {
       message: 'Your settings have been saved.',
       duration: 2000
     });
-    toast.present();
+    await toast.present();
   }
 
   async presentPrompt() {

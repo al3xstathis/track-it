@@ -4,7 +4,7 @@ import {AlertController, ToastController} from "@ionic/angular";
 import {AngularFirestore} from "@angular/fire/firestore";
 import {AngularFireAuth} from "@angular/fire/auth";
 import {Router} from "@angular/router";
-import * as firebase from "firebase";
+// import * as firebase from "firebase";
 import {ContentService} from "../../services/content.service";
 
 @Component({
@@ -69,7 +69,6 @@ export class FPentathlonPage implements OnInit, OnDestroy {
             //edit
             if(this.dataIn.id) {
               await this.db.collection('users').doc(id).collection('saved').doc(this.dataIn.id).set({
-                time: firebase.database.ServerValue.TIMESTAMP,
                 title: data.event,
                 lj: this.dataIn.lj,
                 sp: this.dataIn.sp,
@@ -89,7 +88,6 @@ export class FPentathlonPage implements OnInit, OnDestroy {
             else {
               //add new event
               await this.db.collection('users').doc(id).collection('saved').add({
-                time: firebase.database.ServerValue.TIMESTAMP,
                 title: data.event,
                 lj: this.dataIn.lj,
                 sp: this.dataIn.sp,
@@ -164,7 +162,6 @@ export class FPentathlonPage implements OnInit, OnDestroy {
     const id = (await this.auth.currentUser).uid;
     //edit
     await this.db.collection('users').doc(id).collection('saved').doc(this.dataIn.id).set({
-      time: firebase.database.ServerValue.TIMESTAMP,
       title: this.dataIn.title,
       lj: this.dataIn.lj,
       sp: this.dataIn.sp,
