@@ -1,12 +1,12 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {DecathlonClass} from "../../models/decathlon.class";
-import {AlertController, ToastController} from "@ionic/angular";
-import {AngularFirestore} from "@angular/fire/firestore";
-import {AngularFireAuth} from "@angular/fire/auth";
-import {ActivatedRoute, Router} from "@angular/router";
-import * as firebase from "firebase/app"
-import "firebase/database";
-import {ContentService} from "../../services/content.service";
+import {DecathlonClass} from '../../models/decathlon.class';
+import {AlertController, ToastController} from '@ionic/angular';
+import {AngularFirestore} from '@angular/fire/firestore';
+import {AngularFireAuth} from '@angular/fire/auth';
+import {ActivatedRoute, Router} from '@angular/router';
+import * as firebase from 'firebase/app';
+import 'firebase/database';
+import {ContentService} from '../../services/content.service';
 
 @Component({
   selector: 'app-decathlon',
@@ -56,18 +56,19 @@ export class DecathlonPage implements OnInit, OnDestroy {
 
                 // check if any of the fields have not been defined and initialize them with "0" to post to firestore
 
-                for (let key in this.dataIn) {
-                    if (this.dataIn.hasOwnProperty(key))
-                    if (this.dataIn[key] == undefined) {
-                        this.dataIn[key] = "0";
+                for (const key in this.dataIn) {
+                    if (this.dataIn.hasOwnProperty(key)) {
+                    if (this.dataIn[key] === undefined) {
+                        this.dataIn[key] = '0';
+                    }
                     }
                 }
 
                 const id = (await this.auth.currentUser).uid;
 
 
-                //edit
-                if(this.dataIn.id) {
+                // edit
+                if (this.dataIn.id) {
                     await this.db.collection('users').doc(id).collection('saved').doc(this.dataIn.id).set({
                         time: firebase.database.ServerValue.TIMESTAMP,
                         title: data.event,
@@ -84,14 +85,15 @@ export class DecathlonPage implements OnInit, OnDestroy {
                         dayOne: this.dataOut.dayOneScore,
                         dayTwo: this.dataOut.dayTwoScore,
                         total: this.dataOut.totalScore,
-                        type: "mDec"
+                        type: 'mDec',
+                        typeFull: 'Decathlon'
                     })
                         .catch(error => {
                             console.log(error);
                         });
-                    await this.presentToast()
+                    await this.presentToast();
                 } else {
-                    //add new
+                    // add new
                     await this.db.collection('users').doc(id).collection('saved').add({
                         time: firebase.database.ServerValue.TIMESTAMP,
                         title: data.event,
@@ -108,26 +110,27 @@ export class DecathlonPage implements OnInit, OnDestroy {
                         dayOne: this.dataOut.dayOneScore,
                         dayTwo: this.dataOut.dayTwoScore,
                         total: this.dataOut.totalScore,
-                        type: "mDec"
+                        type: 'mDec',
+                        typeFull: 'Decathlon'
                     })
                         .catch(error => {
                             console.log(error);
                         });
-                    await this.presentToast()
+                    await this.presentToast();
                 }
             }
           }
         ]
       });
-  await alert.present();
+      await alert.present();
 }
 
-    updateScore(){
-      for (let key in this.dataIn) {
+    updateScore() {
+      for (const key in this.dataIn) {
           if (this.dataIn.hasOwnProperty(key)) {
-                  if (key != "fifteen") {
-                      let parse = Number(this.dataIn[key]);
-                      if (parse != 0.00) {
+                  if (key !== 'fifteen') {
+                      const parse = Number(this.dataIn[key]);
+                      if (parse !== 0.00) {
                           let eventScore = this.dataIn.eventScore(key, parse);
                           if (isNaN(eventScore)) {
                               eventScore = 0;
@@ -137,7 +140,7 @@ export class DecathlonPage implements OnInit, OnDestroy {
                           this.dataOut[key] = 0;
                       }
                   } else {
-                      if (this.dataIn[key] != "" && this.dataIn[key] != "0.00") {
+                      if (this.dataIn[key] !== '' && this.dataIn[key] !== '0.00') {
                           let eventScore = this.dataIn.eventScore(key, this.dataIn[key]);
                           if (isNaN(eventScore)) {
                               eventScore = 0;
@@ -153,39 +156,39 @@ export class DecathlonPage implements OnInit, OnDestroy {
       }
       this.calculateDayOne();
       this.calculateDayTwo();
-      this.calculateTotal()
+      this.calculateTotal();
   }
 
     private isDayOne(value: string) {
-        return (value == "hundred" || value == "lj" || value == "sp" || value == "hj" || value == "four" );
+        return (value === 'hundred' || value === 'lj' || value === 'sp' || value === 'hj' || value === 'four' );
     }
 
     private isDayTwo(value: string) {
-        return (value == "hurdles" || value == "dt" || value == "pv" || value == "jt" || value == "fifteen" );
+        return (value === 'hurdles' || value === 'dt' || value === 'pv' || value === 'jt' || value === 'fifteen' );
     }
 
-    calculateDayOne(){
-      let dayOneScore=0;
-      for(let key in this.dataIn){
-          if (this.dataIn.hasOwnProperty(key)){
-              if(this.isDayOne(key)){
-                  dayOneScore+=this.dataOut[key];
+    calculateDayOne() {
+      let dayOneScore = 0;
+      for (const key in this.dataIn) {
+          if (this.dataIn.hasOwnProperty(key)) {
+              if (this.isDayOne(key)) {
+                  dayOneScore += this.dataOut[key];
               }
           }
       }
-      this.dataOut.dayOneScore=dayOneScore.toString();
+      this.dataOut.dayOneScore = dayOneScore.toString();
     }
 
-    calculateDayTwo(){
-      let dayTwoScore=0;
-      for(let key in this.dataIn){
-          if (this.dataIn.hasOwnProperty(key)){
-              if(this.isDayTwo(key)){
-                  dayTwoScore+=this.dataOut[key];
+    calculateDayTwo() {
+      let dayTwoScore = 0;
+      for (const key in this.dataIn) {
+          if (this.dataIn.hasOwnProperty(key)) {
+              if (this.isDayTwo(key)) {
+                  dayTwoScore += this.dataOut[key];
               }
           }
       }
-      this.dataOut.dayTwoScore=dayTwoScore.toString();
+      this.dataOut.dayTwoScore = dayTwoScore.toString();
     }
 
     calculateTotal() {
@@ -193,15 +196,16 @@ export class DecathlonPage implements OnInit, OnDestroy {
     }
 
     async save() {
-        for (let key in this.dataIn) {
-            if (this.dataIn.hasOwnProperty(key))
-                if (this.dataIn[key] == undefined) {
-                    this.dataIn[key] = "0";
+        for (const key in this.dataIn) {
+            if (this.dataIn.hasOwnProperty(key)) {
+                if (this.dataIn[key] === undefined) {
+                    this.dataIn[key] = '0';
                 }
+            }
         }
         const id = (await this.auth.currentUser).uid;
-        //edit
-            await this.db.collection('users').doc(id).collection('saved').doc(this.dataIn.id).set({
+        // edit
+        await this.db.collection('users').doc(id).collection('saved').doc(this.dataIn.id).set({
                 time: firebase.database.ServerValue.TIMESTAMP,
                 title: this.dataIn.title,
                 hundred: this.dataIn.hundred,
@@ -217,21 +221,22 @@ export class DecathlonPage implements OnInit, OnDestroy {
                 dayOne: this.dataOut.dayOneScore,
                 dayTwo: this.dataOut.dayTwoScore,
                 total: this.dataOut.totalScore,
-                type: "mDec"
+                type: 'mDec',
+                typeFull: 'Decathlon'
             })
                 .catch(error => {
                     console.log(error);
                 });
         await this.clearAll();
         await this.router.navigateByUrl('saved');
-        await this.presentToast()
+        await this.presentToast();
     }
 
     clear() {
-      for (let key in this.dataIn) {
-          if(this.dataIn.hasOwnProperty(key)) {
-              if(key != "id" && key != "title") {
-                  this.dataIn[key] = "";
+      for (const key in this.dataIn) {
+          if (this.dataIn.hasOwnProperty(key)) {
+              if (key !== 'id' && key !== 'title') {
+                  this.dataIn[key] = '';
               }
           }
       }
@@ -248,7 +253,7 @@ export class DecathlonPage implements OnInit, OnDestroy {
   async ngOnInit() {
       this.updateScore();
 
-      if(ContentService.mDecValues != null) {
+      if (ContentService.mDecValues != null) {
               this.dataIn.hundred = ContentService.mDecValues.hundred;
               this.dataIn.lj = ContentService.mDecValues.lj;
               this.dataIn.sp = ContentService.mDecValues.sp;
@@ -261,7 +266,7 @@ export class DecathlonPage implements OnInit, OnDestroy {
               this.dataIn.fifteen = ContentService.mDecValues.fifteen;
               this.dataIn.id = ContentService.mDecValues.id;
               this.dataIn.title = ContentService.mDecValues.title;
-          //console.log(ContentService.getDecContent());
+          // console.log(ContentService.getDecContent());
       }
   }
 

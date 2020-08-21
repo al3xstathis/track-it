@@ -16,7 +16,7 @@ ion-header::after {
 .header {
   text-align: center;
   font-size: 28px;
-  font-weight: lighter;
+  //font-weight: lighter;
   letter-spacing: 0.17em;
   //padding-top: 10px;
   --box-shadow: none;
@@ -29,19 +29,11 @@ ion-header::after {
   color: var(--ion-color-dark-contrast);
 }
 
-hr {
-  border: 1px solid var(--ion-color-dark-contrast);
-  height: unset;
-  margin-top: 0;
-}
-
 
 ion-menu-button {
   font-size: 40px !important;
   color: var(--ion-color-dark-contrast);
 }
-
-
 
 ion-toolbar {
   --background: var(--ion-color-dark-solid);
@@ -57,56 +49,11 @@ h1 {
   margin: 100px auto;
 }
 
-.savedEvent {
-  background: transparent;
-  letter-spacing: 0.17em;
-  font-style: normal;
-  font-weight: normal;
-}
-
-.name {
-  font-size: 16px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-grid-row-align: center;
-  -ms-grid-column-align: center;
-  place-self: center;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  text-align: center;
-}
-
-.scores {
-  font-size: 11px;
-  line-height: 20px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-grid-row-align: center;
-  -ms-grid-column-align: center;
-  place-self: center;
-  -webkit-box-pack: start;
-  -ms-flex-pack: start;
-  justify-content: flex-start;
-}
 
 .invisible {
   visibility: hidden;
 }
-.openEvent {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-grid-row-align: center;
-  -ms-grid-column-align: center;
-  place-self: center;
-  -webkit-box-pack: end;
-  -ms-flex-pack: end;
-  justify-content: flex-end;
 
-}
 
 .noShadow {
   --box-shadow: none;
@@ -117,9 +64,16 @@ ion-icon {
   color: var(--ion-color-dark-contrast);
 }
 
-ion-row {
-  height: 100px;
-  margin-bottom: 8px;
-  border-bottom: 1px solid var(--ion-color-dark-contrast);
+
+ion-card {
+  border: 1px solid var(--ion-color-dark-contrast);
+  box-shadow: none;
+  color: var(--ion-text-color);
+  background-color: transparent;
 }
 
+ion-card-header {
+  color: var(--ion-text-color);
+  font-size: larger;
+  font-weight: bold;
+}

@@ -4,23 +4,24 @@ import {RouteReuseStrategy, RouterModule} from '@angular/router';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-import { StatusBar} from "@ionic-native/status-bar/ngx";
+import { StatusBar} from '@ionic-native/status-bar/ngx';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule } from '@angular/common/http';
 
 import { AngularFireModule } from '@angular/fire';
 import { firebaseConfig, environment } from '../environments/environment';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-import { AuthService} from "../services/auth.service";
+import { AuthService} from '../services/auth.service';
 
-import {FormsModule} from "@angular/forms";
-import {LoginComponent} from "./login/login.component";
-import {RegisterComponent} from "./register/register.component";
-import {AngularFirestoreModule} from "@angular/fire/firestore";
-import {GooglePlus} from "@ionic-native/google-plus/ngx";
+import {FormsModule} from '@angular/forms';
+import {LoginComponent} from './login/login.component';
+import {RegisterComponent} from './register/register.component';
+import {AngularFirestoreModule} from '@angular/fire/firestore';
+import {GooglePlus} from '@ionic-native/google-plus/ngx';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import {HTTP} from '@ionic-native/http/ngx';
 
 
 @NgModule({
@@ -46,6 +47,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     StatusBar,
     SplashScreen,
     AuthService,
+    HTTP,
     GooglePlus,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthService} from "../../services/auth.service";
-import {MenuController} from "@ionic/angular";
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -15,11 +14,11 @@ export class RegisterComponent implements OnInit {
   }
 
   registerEmail() {
-    this.auth.SignUp(this.email,this.password);
+    this.auth.SignUp(this.email, this.password);
   }
 
   registerGoogle() {
-    this.auth.SignInWithGoogle()
+    this.auth.SignInWithGoogle();
   }
 
 

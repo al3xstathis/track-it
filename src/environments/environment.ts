@@ -8,14 +8,14 @@ export const environment = {
 };
 
 export const firebaseConfig = {
-  apiKey: "AIzaSyC-MVKRsZgMzw1i4e-UlKNLXcOgXUarZfw",
-  authDomain: "track-it-1be2e.firebaseapp.com",
-  databaseURL: "https://track-it-1be2e.firebaseio.com",
-  projectId: "track-it-1be2e",
-  storageBucket: "track-it-1be2e.appspot.com",
-  messagingSenderId: "893672772382",
-  appId: "1:893672772382:web:7d571f9b20a699bcf0af0f",
-  measurementId: "G-SMND8Z8CSW"
+  apiKey: 'AIzaSyC-MVKRsZgMzw1i4e-UlKNLXcOgXUarZfw',
+  authDomain: 'track-it-1be2e.firebaseapp.com',
+  databaseURL: 'https://track-it-1be2e.firebaseio.com',
+  projectId: 'track-it-1be2e',
+  storageBucket: 'track-it-1be2e.appspot.com',
+  messagingSenderId: '893672772382',
+  appId: '1:893672772382:web:7d571f9b20a699bcf0af0f',
+  measurementId: 'G-SMND8Z8CSW'
 };
 
 /*

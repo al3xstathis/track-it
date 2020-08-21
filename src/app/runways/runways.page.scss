@@ -12,7 +12,7 @@
 .header {
   text-align: center;
   font-size: 28px;
-  font-weight: lighter;
+  //font-weight: lighter;
   letter-spacing: 0.17em;
   //padding-top: 10px;
   --box-shadow: none;
@@ -29,11 +29,6 @@ ion-header::after {
   color: var(--ion-color-dark-contrast);
 }
 
-hr {
-  border: 1px solid var(--ion-color-dark-contrast);;
-  height: unset;
-  margin-top: 0;
-}
 
 ion-menu-button {
   font-size: 40px !important;
@@ -45,25 +40,24 @@ ion-toolbar {
 }
 
 ion-fab {
-  color: var(--ion-color-dark-contrast);
+  color: var(--ion-color-dark);
   -webkit-box-shadow: #0d0d0d;
   box-shadow: #0d0d0d;
 }
 
-ion-card-title {
-  letter-spacing: 0.1em;
-  color: var(--ion-color-dark-shade);
-}
-
-ion-card-content {
-  color: var(--ion-color-dark-shade);
-  font-size: large;
-}
-
 ion-card {
-  background: var(--ion-color-dark-contrast);
-  font-size: large;
+  border: 1px solid var(--ion-color-dark-contrast);
+  box-shadow: none;
+  color: var(--ion-text-color);
+  background-color: transparent;
 }
+
+ion-card-header {
+  color: var(--ion-text-color);
+  font-size: larger;
+  font-weight: bold;
+}
+
 
 h1 {
   text-align: center;

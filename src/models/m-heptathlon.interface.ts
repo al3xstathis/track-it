@@ -1,6 +1,6 @@
-import {EventInterface} from "./event.interface";
+import {EventInterface} from './event.interface';
 
-export interface MHeptathlonInterface extends EventInterface{
+export interface MHeptathlonInterface extends EventInterface {
 
     sixty: string;
     lj: string;

@@ -1,130 +1,154 @@
-<ion-header  >
-  <ion-toolbar >
+<ion-header>
+    <ion-toolbar>
 
-    <ion-button class="menu" color="none"  slot="start">
-      <ion-menu-button size="large"></ion-menu-button>
-    </ion-button>
+        <ion-button class="menu" color="none" slot="start">
+            <ion-menu-button size="large"></ion-menu-button>
+        </ion-button>
 
-    <ion-title class="header">
-      IAAF Points Calculator
-    </ion-title>
+        <ion-title class="header">
+            IAAF Points Calculator
+        </ion-title>
 
-      <ion-button class="no-shadow" color="none" slot="end" (click)="presentPrompt()">
-        INFO
-      </ion-button>
+        <ion-button class="no-shadow" color="none" slot="end" (click)="presentPrompt()">
+            INFO
+        </ion-button>
 
-  </ion-toolbar>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content color="dark" fullscreen="true">
 
 
-    <ion-segment value=2 [(ngModel)]="sexe">
-      <ion-segment-button value=2>MEN</ion-segment-button>
-      <ion-segment-button value=1>WOMEN</ion-segment-button>
+    <ion-segment value=2 [(ngModel)]="sexe" mode="md">
+        <ion-segment-button value=2>MEN</ion-segment-button>
+        <ion-segment-button value=1>WOMEN</ion-segment-button>
     </ion-segment>
 
-    <ion-segment value='Outdoor' [(ngModel)]="season">
-      <ion-segment-button value='Outdoor'>OUTDOOR</ion-segment-button>
-      <ion-segment-button value='Indoor'>INDOOR</ion-segment-button>
+    <ion-segment value='Outdoor' [(ngModel)]="season" mode="md">
+        <ion-segment-button value='Outdoor'>OUTDOOR</ion-segment-button>
+        <ion-segment-button value='Indoor'>INDOOR</ion-segment-button>
     </ion-segment>
 
-        <ion-item class="transparent" color="none">
-          <ion-label>Select Event:</ion-label>
-      <!--    men outdoor-->
-          <ion-select *ngIf="sexe ==2 && season == 'Outdoor'" class="custom-options" [interfaceOptions]="customAlertOptions" placeholder="Select event" [(ngModel)]="selectedEvent">
-            <ion-select-option  value="{{event.value}}" *ngFor="let event of menEventsOutdoor">{{event.name}}</ion-select-option>
-          </ion-select>
-      <!--    men indoor-->
-          <ion-select *ngIf="sexe ==2 && season == 'Indoor'" class="custom-options" [interfaceOptions]="customAlertOptions" placeholder="Select event" [(ngModel)]="selectedEvent">
-            <ion-select-option  value="{{event.value}}" *ngFor="let event of menEventsIndoor">{{event.name}}</ion-select-option>
-          </ion-select>
-      <!--    women indoor-->
-          <ion-select *ngIf="sexe ==1 && season == 'Outdoor'" class="custom-options" [interfaceOptions]="customAlertOptions" placeholder="Select event" [(ngModel)]="selectedEvent">
-            <ion-select-option  value="{{event.value}}" *ngFor="let event of womenEventsOutdoor">{{event.name}}</ion-select-option>
-          </ion-select>
-      <!--    women outdoor-->
-          <ion-select *ngIf="sexe ==1 && season == 'Indoor'" [interfaceOptions]="customAlertOptions" class="custom-options" placeholder="Select event" [(ngModel)]="selectedEvent">
-            <ion-select-option  value="{{event.value}}" *ngFor="let event of womenEventsIndoor">{{event.name}}</ion-select-option>
-          </ion-select>
-  </ion-item>
-
-
-  <ion-item color="none" lines="none">
-    <ion-label>
-      Performance:
-    </ion-label>
-
-    <ion-input placeholder="Input performance here:"  class="alignEnd" [(ngModel)]="perf">
-
-    </ion-input>
-  </ion-item>
-
-  <ion-button expand="block"  color="dark" (click)="getScore(1)">Calculate</ion-button>
-
-  <ion-item color="none" lines="none">
-    <ion-label>
-      IAAF Points achieved:
-    </ion-label>
-    <ion-input readonly="true" class="alignEnd" placeholder="Result will show here:" [(ngModel)]="score">
-
-    </ion-input>
-  </ion-item>
-
-
-  <hr>
-
-
-
-<!--  events to compare to-->
-  <ion-header class="eventsCompare">Events to compare</ion-header>
-<!--  <ion-button expand="block"  color="dark" (click)="addEvent()">Add event to compare</ion-button>-->
-
-  <ion-item class="transparent" color="none" *ngFor="let event of comparedEvents;index as i">
-
-        <ion-label>{{i+1}}</ion-label>
-
-        <ion-select class="custom-options" [interfaceOptions]="customAlertOptions" placeholder="Select season:" [(ngModel)]="comparedEvents[i].season">
-          <ion-select-option value="Outdoor">Outdoor</ion-select-option>
-          <ion-select-option value="Indoor">Indoor</ion-select-option>
+    <ion-item class="transparent" color="none">
+        <ion-label>Select Event:</ion-label>
+        <!--    men outdoor-->
+        <ion-select *ngIf="sexe ==2 && season == 'Outdoor'" class="custom-options"
+                    [interfaceOptions]="customAlertOptions" placeholder="Select event" [(ngModel)]="selectedEvent">
+            <ion-select-option value="{{event.value}}"
+                               *ngFor="let event of menEventsOutdoor">{{event.name}}</ion-select-option>
         </ion-select>
-
-        <ion-select class="custom-options" [interfaceOptions]="customAlertOptions" placeholder="Select sex:" [(ngModel)]="comparedEvents[i].sexe">
-          <ion-select-option value=2>Men</ion-select-option>
-          <ion-select-option value=1>Women</ion-select-option>
+        <!--    men indoor-->
+        <ion-select *ngIf="sexe ==2 && season == 'Indoor'" class="custom-options"
+                    [interfaceOptions]="customAlertOptions" placeholder="Select event" [(ngModel)]="selectedEvent">
+            <ion-select-option value="{{event.value}}"
+                               *ngFor="let event of menEventsIndoor">{{event.name}}</ion-select-option>
         </ion-select>
+        <!--    women indoor-->
+        <ion-select *ngIf="sexe ==1 && season == 'Outdoor'" class="custom-options"
+                    [interfaceOptions]="customAlertOptions" placeholder="Select event" [(ngModel)]="selectedEvent">
+            <ion-select-option value="{{event.value}}"
+                               *ngFor="let event of womenEventsOutdoor">{{event.name}}</ion-select-option>
+        </ion-select>
+        <!--    women outdoor-->
+        <ion-select *ngIf="sexe ==1 && season == 'Indoor'" [interfaceOptions]="customAlertOptions"
+                    class="custom-options" placeholder="Select event" [(ngModel)]="selectedEvent">
+            <ion-select-option value="{{event.value}}"
+                               *ngFor="let event of womenEventsIndoor">{{event.name}}</ion-select-option>
+        </ion-select>
+    </ion-item>
 
 
-          <!--    men outdoor-->
-          <ion-select *ngIf="comparedEvents[i].sexe ==2 && comparedEvents[i].season == 'Outdoor'" class="custom-options" [interfaceOptions]="customAlertOptions" placeholder="Select event" [(ngModel)]="comparedEvents[i].event">
-            <ion-select-option  value="{{event.value}}" *ngFor="let event of menEventsOutdoor">{{event.name}}</ion-select-option>
-          </ion-select>
-          <!--    men indoor-->
-          <ion-select *ngIf="comparedEvents[i].sexe ==2 && comparedEvents[i].season == 'Indoor'" class="custom-options" [interfaceOptions]="customAlertOptions" placeholder="Select event" [(ngModel)]="comparedEvents[i].event">
-            <ion-select-option  value="{{event.value}}" *ngFor="let event of menEventsIndoor">{{event.name}}</ion-select-option>
-          </ion-select>
-          <!--    women indoor-->
-          <ion-select *ngIf="comparedEvents[i].sexe ==1 && comparedEvents[i].season == 'Outdoor'" class="custom-options" [interfaceOptions]="customAlertOptions" placeholder="Select event" [(ngModel)]="comparedEvents[i].event">
-            <ion-select-option  value="{{event.value}}" *ngFor="let event of womenEventsOutdoor">{{event.name}}</ion-select-option>
-          </ion-select>
-          <!--    women outdoor-->
-          <ion-select *ngIf="comparedEvents[i].sexe ==1 && comparedEvents[i].season == 'Indoor'" class="custom-options" [interfaceOptions]="customAlertOptions"  placeholder="Select event" [(ngModel)]="comparedEvents[i].event">
-            <ion-select-option  value="{{event.value}}" *ngFor="let event of womenEventsIndoor">{{event.name}}</ion-select-option>
-          </ion-select>
+    <ion-item color="none" lines="none">
+        <ion-label>
+            Performance:
+        </ion-label>
+
+        <ion-input placeholder="Input performance here:" class="alignEnd" [(ngModel)]="perf">
+
+        </ion-input>
+    </ion-item>
+
+    <ion-button expand="block" color="dark" (click)="getScore(1)">Calculate</ion-button>
+
+    <ion-item color="none" lines="none">
+        <ion-label>
+            IAAF Points achieved:
+        </ion-label>
+        <ion-input readonly="true" class="alignEnd" placeholder="Result will show here:" [(ngModel)]="score">
+
+        </ion-input>
+    </ion-item>
 
 
+    <hr>
 
-        <ion-input class="alignEnd" readonly="true" [ngModel]="event.perf" *ngIf="event.perf"></ion-input>
+
+    <!--  events to compare to-->
+    <ion-header class="eventsCompare">Events to compare</ion-header>
+    <!--  <ion-button expand="block"  color="dark" (click)="addEvent()">Add event to compare</ion-button>-->
+
+    <ion-list class="listClass" *ngFor="let event of comparedEvents;index as i">
+
+        <ion-item>
+            {{i + 1}}
+
+            <ion-select class="custom-options" [interfaceOptions]="customAlertOptions" placeholder="Select season:"
+                        [(ngModel)]="comparedEvents[i].season">
+                <ion-select-option value="Outdoor">Outdoor</ion-select-option>
+                <ion-select-option value="Indoor">Indoor</ion-select-option>
+            </ion-select>
+
+            <ion-select class="custom-options" [interfaceOptions]="customAlertOptions" placeholder="Select sex:"
+                        [(ngModel)]="comparedEvents[i].sexe">
+                <ion-select-option value=2>Men</ion-select-option>
+                <ion-select-option value=1>Women</ion-select-option>
+            </ion-select>
+        </ion-item>
+
+        <ion-item>
 
 
-  </ion-item>
+            <!--    men outdoor-->
+            <ion-select *ngIf="comparedEvents[i].sexe ==2 && comparedEvents[i].season == 'Outdoor'"
+                        class="custom-options" [interfaceOptions]="customAlertOptions" placeholder="Select event"
+                        [(ngModel)]="comparedEvents[i].event">
+                <ion-select-option value="{{event.value}}"
+                                   *ngFor="let event of menEventsOutdoor">{{event.name}}</ion-select-option>
+            </ion-select>
+            <!--    men indoor-->
+            <ion-select *ngIf="comparedEvents[i].sexe ==2 && comparedEvents[i].season == 'Indoor'"
+                        class="custom-options" [interfaceOptions]="customAlertOptions" placeholder="Select event"
+                        [(ngModel)]="comparedEvents[i].event">
+                <ion-select-option value="{{event.value}}"
+                                   *ngFor="let event of menEventsIndoor">{{event.name}}</ion-select-option>
+            </ion-select>
+            <!--    women indoor-->
+            <ion-select *ngIf="comparedEvents[i].sexe ==1 && comparedEvents[i].season == 'Outdoor'"
+                        class="custom-options" [interfaceOptions]="customAlertOptions" placeholder="Select event"
+                        [(ngModel)]="comparedEvents[i].event">
+                <ion-select-option value="{{event.value}}"
+                                   *ngFor="let event of womenEventsOutdoor">{{event.name}}</ion-select-option>
+            </ion-select>
+            <!--    women outdoor-->
+            <ion-select *ngIf="comparedEvents[i].sexe ==1 && comparedEvents[i].season == 'Indoor'"
+                        class="custom-options" [interfaceOptions]="customAlertOptions" placeholder="Select event"
+                        [(ngModel)]="comparedEvents[i].event">
+                <ion-select-option value="{{event.value}}"
+                                   *ngFor="let event of womenEventsIndoor">{{event.name}}</ion-select-option>
+            </ion-select>
 
+            <ion-input class="alignEnd" readonly="true" [ngModel]="event.perf"></ion-input>
+        </ion-item>
+
+
+    </ion-list>
 
 
 </ion-content>
 
 <ion-footer>
-  <ion-toolbar >
-    <ion-button class="compareButton" fill="clear" color="none" expand="full" (click)="getScore(2)">Compare events</ion-button>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-button class="compareButton" fill="clear" color="none" expand="full" (click)="getScore(2)">Compare events
+        </ion-button>
+    </ion-toolbar>
 </ion-footer>

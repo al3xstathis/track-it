@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import {AngularFireAuth} from "@angular/fire/auth";
-import {Observable} from "rxjs";
-import * as firebase from "firebase/app";
-import "firebase/auth";
-import {AngularFirestore} from "@angular/fire/firestore";
-import { GooglePlus} from "@ionic-native/google-plus/ngx";
-import { Platform} from "@ionic/angular";
+import {AngularFireAuth} from '@angular/fire/auth';
+import {Observable} from 'rxjs';
+import * as firebase from 'firebase/app';
+import 'firebase/auth';
+import {AngularFirestore} from '@angular/fire/firestore';
+import { GooglePlus} from '@ionic-native/google-plus/ngx';
+import { Platform} from '@ionic/angular';
 
 
 @Injectable({
@@ -17,38 +17,38 @@ export class AuthService {
   constructor(private fireAuth: AngularFireAuth,
               private db: AngularFirestore,
               private gplus: GooglePlus,
-              private platform: Platform,) {
+              private platform: Platform, ) {
     this.userData = fireAuth.authState;
   }
 
   SignUp(email: string, password: string) {
     this.fireAuth
-        .createUserWithEmailAndPassword(email,password)
+        .createUserWithEmailAndPassword(email, password)
         .then( async res => {
           console.log('Successfully signed up!', res);
-           await this.db.collection('users').doc(res.user.uid).set({
-              email: email,
+          await this.db.collection('users').doc(res.user.uid).set({
+              email,
               UID: res.user.uid
-          }).then()
+          }).then();
         })
         .catch(error => {
           console.log( error.message);
-        })
+        });
 
   }
 
   SignIn(email: string, password: string) {
     this.fireAuth
-        .signInWithEmailAndPassword(email,password)
+        .signInWithEmailAndPassword(email, password)
         .then(res => {
           console.log('Successfully signed in!', res);
         })
         .catch(error => {
           console.log('Something is wrong: ', error.message);
-        })
+        });
   }
   SignInWithGoogle() {
-      if(this.platform.is('cordova')) {
+      if (this.platform.is('cordova')) {
           this.nativeGoogleLogin();
       } else {
           this.webGoogleLogin();
@@ -62,14 +62,14 @@ export class AuthService {
   async nativeGoogleLogin(): Promise<firebase.auth.UserCredential> {
       try {
           const gplusUser = await this.gplus.login({
-              'webClientId': '893672772382-niavl3soo5g7jr8hh0qo0ig9e1fs7fhc.apps.googleusercontent.com',
-              'offline': true,
-              'scope': 'profile email'
-          })
+              webClientId: '893672772382-niavl3soo5g7jr8hh0qo0ig9e1fs7fhc.apps.googleusercontent.com',
+              offline: true,
+              scope: 'profile email'
+          });
 
           return await this.fireAuth.signInWithCredential(
               firebase.auth.GoogleAuthProvider.credential(gplusUser.idToken)
-          )
+          );
       } catch (err) {
           console.log(err);
       }
@@ -85,11 +85,11 @@ export class AuthService {
                   this.db.collection('users').doc(res.user.uid).set({
                       email: res.user.email,
                       UID: res.user.uid
-              }).then()
+              }).then();
 
-          })
+          });
 
-      } catch(err) {
+      } catch (err) {
           console.log(err);
       }
   }

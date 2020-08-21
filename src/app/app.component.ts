@@ -52,13 +52,13 @@ export class AppComponent implements OnInit {
         },
 
         {
-            title: 'Saved Series',
+            title: 'Saved Events',
             url: '/saved'
         },
-        {
-            title: 'Unit Converter',
-            url: '/unit-converter'
-        }
+        // {
+        //     title: 'Unit Converter',
+        //     url: '/unit-converter'
+        // }
     ];
 
 
@@ -73,13 +73,13 @@ export class AppComponent implements OnInit {
     ) {
         this.initializeApp();
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('ngsw-worker.js').then(function(registration) {
+            navigator.serviceWorker.register('ngsw-worker.js').then(registration => {
                 console.log('ServiceWorker registration successful with scope: ', registration.scope);
-            }).catch(function(err) {
-                //registration failed :(
+            }).catch(err => {
+                // registration failed :(
                 console.log('ServiceWorker registration failed: ', err);
             });
-        }else {
+        } else {
             console.log('No service-worker on this browser');
         }
     }

@@ -1,6 +1,6 @@
-import {EventInterface} from "./event.interface";
+import {EventInterface} from './event.interface';
 
-export interface IDecathlon extends EventInterface{
+export interface IDecathlon extends EventInterface {
     hundred: string;
     lj: string;
     sp: string;

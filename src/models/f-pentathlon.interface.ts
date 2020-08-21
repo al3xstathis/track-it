@@ -1,6 +1,6 @@
-import {EventInterface} from "./event.interface";
+import {EventInterface} from './event.interface';
 
-export interface FPentathlonInterface extends EventInterface{
+export interface FPentathlonInterface extends EventInterface {
     hurdles: string;
     hj: string;
     sp: string;

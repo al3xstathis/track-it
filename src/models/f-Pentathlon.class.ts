@@ -1,51 +1,52 @@
-import {FPentathlonInterface} from "./f-pentathlon.interface";
+import {FPentathlonInterface} from './f-pentathlon.interface';
 
-export class FPentathlonClass implements FPentathlonInterface{
+export class FPentathlonClass implements FPentathlonInterface {
 
     constructor() {
     }
-    hurdles="";
-    hj="";
-    sp="";
-    lj="";
-    eight="";
-    dayOneScore="";
-    dayTwoScore="";
-    totalScore="";
-    title="";
-    id="";
+
+    hurdles = '';
+    hj = '';
+    sp = '';
+    lj = '';
+    eight = '';
+    dayOneScore = '';
+    dayTwoScore = '';
+    totalScore = '';
+    title = '';
+    id = '';
 
 
     eventScore(event: string, score: any): number {
-        let a: number= 0;
-        let b: number= 0;
-        let c: number= 0;
-        let cm: number= 0;
-        let seconds: number= 0;
-        switch(event) {
-            case "lj":
+        let a = 0;
+        let b = 0;
+        let c = 0;
+        let cm = 0;
+        let seconds = 0;
+        switch (event) {
+            case 'lj':
                 a = 0.188807;
                 b = 210;
                 c = 1.41;
                 cm = score * 100;
                 return this.calculateField(cm, a, b, c);
-            case "sp":
+            case 'sp':
                 a = 56.0211;
                 b = 1.5;
                 c = 1.05;
                 return this.calculateField(score, a, b, c);
-            case "hj":
+            case 'hj':
                 a = 1.84523;
                 b = 75;
                 c = 1.348;
                 cm = score * 100;
                 return this.calculateField(cm, a, b, c);
-            case "hurdles":
+            case 'hurdles':
                 a = 20.0479;
                 b = 17;
                 c = 1.835;
                 return this.calculateRunning(score, a, b, c);
-            case "eight":
+            case 'eight':
                 a = 0.11193;
                 b = 254;
                 c = 1.88;
@@ -55,21 +56,21 @@ export class FPentathlonClass implements FPentathlonInterface{
     }
 
     getSeconds(score): number {
-        if(score) {
+        if (score) {
             if (score.length >= 1) {
-                let one = score.toString().split(':');
-                let min = Number(one[0]);
-                let sec = Number(one[1]);
+                const one = score.toString().split(':');
+                const min = Number(one[0]);
+                const sec = Number(one[1]);
                 return min * 60 + sec;
             }
         }
     }
 
-    calculateRunning(score,a,b,c) {
-        return Math.floor(a*Math.pow(b-score, c));
+    calculateRunning(score, a, b, c) {
+        return Math.floor(a * Math.pow(b - score, c));
     }
 
-    calculateField(score,a,b,c) {
-        return Math.floor(a*Math.pow(score-b,c));
+    calculateField(score, a, b, c) {
+        return Math.floor(a * Math.pow(score - b, c));
     }
 }

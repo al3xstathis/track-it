@@ -1,6 +1,6 @@
-import {EventInterface} from "./event.interface";
+import {EventInterface} from './event.interface';
 
-export interface IHeptathlon extends EventInterface{
+export interface IHeptathlon extends EventInterface {
     hurdles: string;
     hj: string;
     sp: string;
