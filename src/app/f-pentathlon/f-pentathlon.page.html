@@ -6,7 +6,7 @@
     </ion-button>
 
     <ion-title class="header">
-      Women Pentathlon
+      Women <br>Pentathlon
     </ion-title>
 
     <ion-button class="save" *ngIf="!dataIn.id" (click)="presentPrompt()" color="none"  slot="end">
@@ -23,7 +23,7 @@
   <hr>
 
   <!--If we are editing a saved event then the title of the event should appear at the top-->
-  <ion-title *ngIf="dataIn.id != ''" class="eventTitle">{{dataIn.title}}</ion-title>
+  <ion-title *ngIf="dataIn.id != ''" class="eventTitle">Title: {{dataIn.title}}</ion-title>
   <hr *ngIf="dataIn.id != ''">
 
   <div class="titles">

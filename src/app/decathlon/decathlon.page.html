@@ -19,10 +19,10 @@
       </ion-toolbar>
 </ion-header>
 
-<ion-content color="dark" fullscreen>
+<ion-content color="dark" fullscreen >
    <hr>
     <!--If we are editing a saved event then the title of the event should appear at the top-->
-    <ion-title *ngIf="dataIn.id != ''" class="eventTitle">{{dataIn.title}}</ion-title>
+    <ion-title *ngIf="dataIn.id != ''" class="eventTitle">Title: {{dataIn.title}}</ion-title>
     <hr *ngIf="dataIn.id != ''">
 
 

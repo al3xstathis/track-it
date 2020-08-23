@@ -6,7 +6,7 @@
         </ion-button>
 
         <ion-title class="header">
-            IAAF Points Calculator
+            IAAF Points<br>Calculator
         </ion-title>
 
         <ion-button class="no-shadow" color="none" slot="end" (click)="presentPrompt()">
@@ -89,7 +89,7 @@
 
     <ion-list class="listClass" *ngFor="let event of comparedEvents;index as i">
 
-        <ion-item>
+        <ion-item color="none">
             {{i + 1}}
 
             <ion-select class="custom-options" [interfaceOptions]="customAlertOptions" placeholder="Select season:"
@@ -105,8 +105,7 @@
             </ion-select>
         </ion-item>
 
-        <ion-item>
-
+        <ion-item color="none">
 
             <!--    men outdoor-->
             <ion-select *ngIf="comparedEvents[i].sexe ==2 && comparedEvents[i].season == 'Outdoor'"

@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
 import { HeptathlonPage } from './heptathlon.page';
+import {NO_ERRORS_SCHEMA} from '@angular/core';
 
 describe('HeptathlonPage', () => {
   let component: HeptathlonPage;
@@ -10,7 +11,8 @@ describe('HeptathlonPage', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ HeptathlonPage ],
-      imports: [IonicModule.forRoot()]
+      imports: [IonicModule.forRoot()],
+      schemas: [NO_ERRORS_SCHEMA]
     }).compileComponents();
 
     fixture = TestBed.createComponent(HeptathlonPage);

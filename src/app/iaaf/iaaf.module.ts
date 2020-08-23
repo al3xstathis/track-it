@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { IaafPageRoutingModule } from './iaaf-routing.module';
 
 import { IaafPage } from './iaaf.page';
+import {HttpClient} from '@angular/common/http';
 
 @NgModule({
   imports: [
@@ -15,6 +16,9 @@ import { IaafPage } from './iaaf.page';
     IonicModule,
     IaafPageRoutingModule
   ],
-  declarations: [IaafPage]
+  declarations: [IaafPage],
+  providers: [
+      HttpClient
+  ]
 })
 export class IaafPageModule {}

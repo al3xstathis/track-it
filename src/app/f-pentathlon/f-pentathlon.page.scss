@@ -5,6 +5,12 @@
 * Browsers: last 4 version
 */
 
+@media screen and (max-width: 400px) {
+  .header {
+
+  }
+}
+
 hr {
   border: 1px solid var(--ion-color-dark-contrast);
   height: unset;
@@ -18,7 +24,7 @@ ion-header::after {
 .eventTitle {
   text-align: center;
   font-size: 28px;
-  font-weight: lighter;
+  //font-weight: lighter;
   letter-spacing: 0.17em;
 }
 
@@ -26,7 +32,6 @@ ion-header::after {
   text-align: center;
   font-size: 18px;
   //font-weight: lighter;
-  letter-spacing: 0.17em;
   //padding-top: 10px;
   --box-shadow: none;
   color: var(--ion-color-dark-contrast);

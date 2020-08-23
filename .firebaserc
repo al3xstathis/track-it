@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "track-it-1be2e"
+    "default": "track-it-1be2e",
+    "prod": "track-it-prod"
   }
 }
