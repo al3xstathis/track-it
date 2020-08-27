@@ -40,8 +40,8 @@ ion-item {
 .action-sheet-cancel.sc-ion-action-sheet-ios::after{
   background: var(--ion-color-dark) !important;
 }
-
-.alert-input.sc-ion-alert-ios, .alert-input-sc-ion-alert-md {
+//.alert-input.sc-ion-alert-ios,
+.alert-input-sc-ion-alert-md {
   color: var(--ion-color-dark) !important;
   border-bottom: 0 !important;
 }

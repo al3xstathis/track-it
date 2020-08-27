@@ -1,7 +1,7 @@
 {
   "name": "Track-It",
   "short_name": "Track-It",
-  "theme_color": "#1976d2",
+  "theme_color": "#ffffff",
   "background_color": "#ffffff",
   "display": "standalone",
   "scope": "./",

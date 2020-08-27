@@ -69,7 +69,6 @@ export class AppComponent implements OnInit {
         private fireAuth: AngularFireAuth,
         private router: Router,
         private menuCtrl: MenuController,
-        // private localStorage: ,
     ) {
         this.initializeApp();
         if ('serviceWorker' in navigator) {
