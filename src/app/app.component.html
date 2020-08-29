@@ -2,11 +2,12 @@
     <ion-split-pane contentId="main-content">
         <ion-menu contentId="main-content" type="overlay">
             <ion-content>
-                <ion-list id="inbox-list">
+                <ion-list class="option-list-phone">
 
                     <ion-list-header>Track-it</ion-list-header>
 
                     <ion-list *ngFor="let e of events">
+
 
                         <ion-item mode="md" button *ngIf="e.children?.length>0" (click)="e.open = !e.open" lines="none"
                                   detail="false" color="none">
@@ -37,6 +38,40 @@
 
 
                     </ion-list>
+
+                </ion-list>
+                <ion-list class="option-list-tablet-computer">
+                    <ion-list-header>Track-it</ion-list-header>
+
+                    <ion-list *ngFor="let e of events">
+
+
+                        <ion-item mode="md" button *ngIf="e.children?.length>0" (click)="e.open = !e.open" lines="none"
+                                  detail="false" color="none">
+                            <ion-icon [class.closed-icon]="!e.open" [class.open-icon]="e.open" name="chevron-forward"
+                                      slot="end"></ion-icon>
+
+                            <ion-label>{{e.title}}</ion-label>
+                        </ion-item>
+
+                        <ion-list *ngIf="e.children?.length>0" [class.child-open]="e.open"
+                                  [class.child-closed]="!e.open">
+                                <ion-item mode="md" color="none" lines="none" *ngFor="let child of e.children"
+                                          routerDirection="root" [routerLink]="[child.url]" (click)="e.open=!e.open"
+                                          class="child">
+                                    <ion-label>{{ child.title }}</ion-label>
+                                </ion-item>
+                        </ion-list>
+
+
+                            <ion-item *ngIf="e.url && !e.children" lines="none" routerDirection="root" [routerLink]="[e.url]" class="parent"
+                                      color="none" detail="false">
+                                <ion-label>{{ e.title }}</ion-label>
+                            </ion-item>
+
+
+                    </ion-list>
+
 
                 </ion-list>
 

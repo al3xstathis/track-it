@@ -120,3 +120,16 @@ ion-toggle {
   --background: var(--ion-color-dark-contrast);
   --handle-background-checked: var(--ion-color-dark-tint);
 }
+
+.option-list-tablet-computer {
+  display: none;
+}
+
+@media screen and (min-width: 700px) {
+  .option-list-phone {
+    display: none;
+  }
+  .option-list-tablet-computer {
+    display: inherit;
+  }
+}
