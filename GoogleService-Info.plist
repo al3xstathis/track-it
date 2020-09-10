@@ -3,11 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>401315847279-2p53qs9jkmuk4rf7q13q7731gsjn1jmt.apps.googleusercontent.com</string>
+	<string>401315847279-01jmgfhv8bdsf9ecb6irf00b807ofvae.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.401315847279-2p53qs9jkmuk4rf7q13q7731gsjn1jmt</string>
+	<string>com.googleusercontent.apps.401315847279-01jmgfhv8bdsf9ecb6irf00b807ofvae</string>
 	<key>ANDROID_CLIENT_ID</key>
-	<string>401315847279-ftmqn21mf1ttnp7s3bpgaqucmgb645q6.apps.googleusercontent.com</string>
+	<string>401315847279-h0994i8mb1ahl5ugfio8lu8lv2f14u1b.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
 	<string>AIzaSyAFue1kMBei_ZylDWWUmtCxPCf_h-06WG0</string>
 	<key>GCM_SENDER_ID</key>
@@ -15,7 +15,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.trackit.app</string>
+	<string>ca.trackit.app</string>
 	<key>PROJECT_ID</key>
 	<string>track-it-prod</string>
 	<key>STORAGE_BUCKET</key>
@@ -31,7 +31,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:401315847279:ios:056bdd60e370348e1e019a</string>
+	<string>1:401315847279:ios:75b0a914a1582b0b1e019a</string>
 	<key>DATABASE_URL</key>
 	<string>https://track-it-prod.firebaseio.com</string>
 </dict>
