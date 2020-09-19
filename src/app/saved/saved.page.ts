@@ -127,7 +127,8 @@ export class SavedPage implements OnInit {
                         const id = (await this.user.currentUser).uid;
 
                         this.savedCollection = this.db.collection('users').doc(id)
-                            .collection<EventInterface>('saved', ref => ref.where('type', '==', 'mDec'));
+                            .collection<EventInterface>('saved', ref => ref.where('type', '==', 'mDec')
+                                .orderBy('time', 'desc'));
                         this.events = this.savedCollection.snapshotChanges().pipe(
                             map(actions => actions.map(a => {
                                 const data = a.payload.doc.data() as EventInterface;

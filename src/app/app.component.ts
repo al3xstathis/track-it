@@ -5,6 +5,7 @@ import {SplashScreen} from '@ionic-native/splash-screen/ngx';
 import {StatusBar} from '@ionic-native/status-bar/ngx';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {Router} from '@angular/router';
+import {SwUpdate} from '@angular/service-worker';
 
 
 @Component({
@@ -60,6 +61,7 @@ export class AppComponent implements OnInit {
         //     url: '/unit-converter'
         // }
     ];
+    private deferredPrompt: Event;
 
 
     constructor(
@@ -69,11 +71,37 @@ export class AppComponent implements OnInit {
         private fireAuth: AngularFireAuth,
         private router: Router,
         private menuCtrl: MenuController,
+        private swUpdate: SwUpdate
     ) {
         this.initializeApp();
+        window.addEventListener('beforeinstallprompt', (e) => {
+            // Prevent the mini-infobar from appearing on mobile
+            e.preventDefault();
+            // Stash the event so it can be triggered later.
+            this.deferredPrompt = e;
+            // Update UI notify the user they can install the PWA
+            this.showInstallPromotion();
+        });
+
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('ngsw-worker.js').then(registration => {
                 console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                // registration.onupdatefound = () => {
+                //     const installingWorker = registration.installing;
+                //     installingWorker.onstatechange = () => {
+                //         switch (installingWorker.state) {
+                //             case 'installed':
+                //                 if (navigator.serviceWorker.controller) {
+                //                     // new update available
+                //                     resolve(true);
+                //                 } else {
+                //                     // no update available
+                //                     resolve(false);
+                //                 }
+                //                 break;
+                //         }
+                //     };
+                // };
             }).catch(err => {
                 // registration failed :(
                 console.log('ServiceWorker registration failed: ', err);
@@ -83,11 +111,16 @@ export class AppComponent implements OnInit {
         }
     }
 
+    showInstallPromotion() {
+
+    }
+
     initializeApp() {
         this.platform.ready().then(() => {
             this.statusBar.styleBlackTranslucent();
             this.splashScreen.hide();
             this.statusBar.overlaysWebView(false);
+            this.statusBar.backgroundColorByName('black');
             this.menuCtrl.close();
             this.menuCtrl.enable(false);
             this.isDark = !!localStorage.getItem('is-dark');
@@ -124,5 +157,16 @@ export class AppComponent implements OnInit {
     }
 
     ngOnInit() {
+
+        if (this.swUpdate.isEnabled) {
+
+            this.swUpdate.available.subscribe(() => {
+
+                if (confirm('New version available. Load New Version?')) {
+
+                    window.location.reload();
+                }
+            });
+        }
     }
 }

@@ -27,7 +27,6 @@ export class RunwaysPage implements OnInit {
         this.init();
     }
 
-
     async presentActionSheet() {
 
         const actionSheet = await this.actionSheetController.create({

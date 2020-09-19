@@ -6,7 +6,7 @@ import {AngularFireAuth} from '@angular/fire/auth';
 import {Router} from '@angular/router';
 import {FormsModule} from '@angular/forms';
 import * as firebase from 'firebase/app';
-import 'firebase/database';
+import 'firebase/firestore';
 import {ContentService} from '../../services/content.service';
 
 @Component({
@@ -72,7 +72,7 @@ export class MHeptathlonPage implements OnInit, OnDestroy {
                         // edit
                         if (this.dataIn.id) {
                             await this.db.collection('users').doc(id).collection('saved').doc(this.dataIn.id).set({
-                                time: firebase.database.ServerValue.TIMESTAMP,
+                                time: firebase.firestore.FieldValue.serverTimestamp(),
                                 title: data.event,
                                 sixty: this.dataIn.sixty,
                                 lj: this.dataIn.lj,
@@ -94,7 +94,7 @@ export class MHeptathlonPage implements OnInit, OnDestroy {
                         } else {
                             // add new
                             await this.db.collection('users').doc(id).collection('saved').add({
-                                time: firebase.database.ServerValue.TIMESTAMP,
+                                time: firebase.firestore.FieldValue.serverTimestamp(),
                                 title: data.event,
                                 sixty: this.dataIn.sixty,
                                 lj: this.dataIn.lj,
@@ -202,7 +202,7 @@ export class MHeptathlonPage implements OnInit, OnDestroy {
         const id = (await this.auth.currentUser).uid;
         // edit
         await this.db.collection('users').doc(id).collection('saved').doc(this.dataIn.id).set({
-            time: firebase.database.ServerValue.TIMESTAMP,
+            time: firebase.firestore.FieldValue.serverTimestamp(),
             title: this.dataIn.title,
             sixty: this.dataIn.sixty,
             lj: this.dataIn.lj,

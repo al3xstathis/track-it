@@ -14,7 +14,9 @@ export class RegisterComponent implements OnInit {
   }
 
   registerEmail() {
-    this.auth.SignUp(this.email, this.password);
+    this.auth.SignUp(this.email, this.password).then( res => {
+      console.log(res);
+    });
   }
 
   registerGoogle() {

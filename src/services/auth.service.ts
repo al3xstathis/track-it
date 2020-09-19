@@ -5,7 +5,7 @@ import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {GooglePlus} from '@ionic-native/google-plus/ngx';
-import {Platform} from '@ionic/angular';
+import {Platform, ToastController} from '@ionic/angular';
 
 
 @Injectable({
@@ -17,21 +17,33 @@ export class AuthService {
     constructor(private fireAuth: AngularFireAuth,
                 private db: AngularFirestore,
                 private gplus: GooglePlus,
-                private platform: Platform) {
+                private platform: Platform,
+                private toastController: ToastController) {
         this.userData = fireAuth.authState;
     }
 
+    async presentToast(message: string) {
+        const toast = await this.toastController.create({
+            message,
+            duration: 3000
+        });
+        await toast.present();
+    }
+
     SignUp(email: string, password: string) {
-        this.fireAuth
+        return this.fireAuth
             .createUserWithEmailAndPassword(email, password)
             .then(async res => {
+                await this.presentToast('Congrats! You\'ve signed up!');
                 console.log('Successfully signed up!', res);
                 await this.db.collection('users').doc(res.user.uid).set({
                     email,
                     UID: res.user.uid
                 }).then();
             })
-            .catch(error => {
+            .catch(async error => {
+                await this.presentToast('There was a problem signing up, make sure the email' +
+                    ' is valid and password is at least 6 characters');
                 console.log(error.message);
             });
 
@@ -40,10 +52,13 @@ export class AuthService {
     SignIn(email: string, password: string) {
         this.fireAuth
             .signInWithEmailAndPassword(email, password)
-            .then(res => {
+            .then(async res => {
+                await this.presentToast('You\'ve signed in!');
                 console.log('Successfully signed in!', res);
             })
-            .catch(error => {
+            .catch(async error => {
+                await this.presentToast('There was a problem signing in make sure the email' +
+                    ' matches the password you originally registered with.');
                 console.log('Something is wrong: ', error.message);
             });
     }
@@ -70,6 +85,7 @@ export class AuthService {
         } catch (err) {
             console.log(err);
         }
+        await this.presentToast('You\'ve signed in with Google!');
     }
 
     async webGoogleLogin(): Promise<void> {
@@ -77,7 +93,8 @@ export class AuthService {
             const provider = new firebase.auth.GoogleAuthProvider();
 
             await this.fireAuth.signInWithPopup(provider)
-                .then(res => {
+                .then(async res => {
+                    await this.presentToast('You\'ve signed in with Google!');
                     console.log('Successfully signed in with Google!', res);
                     this.db.collection('users').doc(res.user.uid).set({
                         email: res.user.email,

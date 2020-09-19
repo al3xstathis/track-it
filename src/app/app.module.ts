@@ -24,6 +24,7 @@ import {ServiceWorkerModule} from '@angular/service-worker';
 import {HTTP} from '@ionic-native/http/ngx';
 import {AvsService} from '../services/avs.service';
 import {ContentService} from '../services/content.service';
+import {AngularFireAnalyticsModule, ScreenTrackingService} from '@angular/fire/analytics';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import {ContentService} from '../services/content.service';
         AngularFirestoreModule.enablePersistence(),
         FormsModule,
         RouterModule,
-        ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production})
+        ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
+        AngularFireAnalyticsModule
     ],
     providers: [
         StatusBar,
@@ -55,6 +57,7 @@ import {ContentService} from '../services/content.service';
         HttpClientModule,
         GooglePlus,
         AngularFireAuthModule,
+        ScreenTrackingService,
         {provide: RouteReuseStrategy, useClass: IonicRouteStrategy}
     ],
     bootstrap: [AppComponent]

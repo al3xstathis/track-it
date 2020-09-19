@@ -125,6 +125,10 @@ ion-toggle {
   display: none;
 }
 
+.no-shadow {
+  --box-shadow: none;
+}
+
 @media screen and (min-width: 700px) {
   .option-list-phone {
     display: none;

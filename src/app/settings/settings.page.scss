@@ -1,0 +1,53 @@
+.darkToggle {
+  color: var(--ion-color-dark-contrast);
+  padding-left: 20px;
+  font-family: 'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif !important;
+}
+
+ion-toggle {
+  --background-checked: var(--ion-color-dark-contrast);
+  --background: var(--ion-color-dark-contrast);
+  --handle-background-checked: var(--ion-color-dark-tint);
+}
+
+
+ion-header::after {
+  background-image: none;
+}
+
+.header {
+  text-align: center;
+  font-size: 28px;
+  //font-weight: lighter;
+  letter-spacing: 0.17em;
+  //padding-top: 10px;
+  --box-shadow: none;
+  color: var(--ion-color-dark-contrast);
+}
+.menu {
+  --box-shadow:none;
+}
+
+.sc-ion-buttons-md-h {
+  display: block !important;
+}
+
+ion-menu-button {
+  font-size: 40px !important;
+  color: var(--ion-color-dark-contrast);
+}
+
+ion-toolbar {
+  --background: var(--ion-color-dark-solid);
+}
+
+.invisible {
+  visibility: hidden;
+}
+.list {
+  background-color: transparent;
+}
+
+.no-shadow {
+  --box-shadow: none;
+}

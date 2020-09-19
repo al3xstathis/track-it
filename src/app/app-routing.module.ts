@@ -44,14 +44,18 @@ const routes: Routes = [
         path: 'register',
         component: RegisterComponent
     },
-  {
-    path: 'loading',
-    loadChildren: () => import('./loading/loading.module').then( m => m.LoadingPageModule)
-  },
-  {
-    path: 'iaaf',
-    loadChildren: () => import('./iaaf/iaaf.module').then( m => m.IaafPageModule)
-  },
+    {
+        path: 'loading',
+        loadChildren: () => import('./loading/loading.module').then(m => m.LoadingPageModule)
+    },
+    {
+        path: 'iaaf',
+        loadChildren: () => import('./iaaf/iaaf.module').then(m => m.IaafPageModule)
+    },
+    {
+        path: 'settings',
+        loadChildren: () => import('./settings/settings.module').then(m => m.SettingsPageModule)
+    },
 
 ];
 

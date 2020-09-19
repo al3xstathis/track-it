@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+
+    <ion-button class="menu" color="none" slot="start">
+      <ion-menu-button size="large"></ion-menu-button>
+    </ion-button>
+
+    <ion-title class="header">
+      Settings
+    </ion-title>
+
+
+    <ion-button class="invisible"  color="none" slot="end" disabled="true">
+      <ion-menu-button size="large"></ion-menu-button>
+    </ion-button>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="dark" fullscreen>
+  <ion-list class="list">
+    <ion-item mode="md" color="none" lines="none">
+      <ion-label>Dark Mode</ion-label>
+      <ion-toggle [(ngModel)]="isDark"
+                  (ionChange)="darkModeToggle($event.detail.checked)"></ion-toggle>
+    </ion-item>
+    <ion-item mode="md" color="none" lines="none">
+      <ion-label>Logout</ion-label>
+      <ion-button class="no-shadow" color="none" slot="end" size="large" (click)="logout()">
+        <ion-icon name="log-in-outline"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

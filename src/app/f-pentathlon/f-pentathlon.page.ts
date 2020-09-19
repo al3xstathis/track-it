@@ -5,6 +5,8 @@ import {AngularFirestore} from '@angular/fire/firestore';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {Router} from '@angular/router';
 import {ContentService} from '../../services/content.service';
+import * as firebase from 'firebase';
+import 'firebase/firestore';
 
 @Component({
     selector: 'app-f-pentathlon',
@@ -69,6 +71,7 @@ export class FPentathlonPage implements OnInit, OnDestroy {
                         if (this.dataIn.id) {
                             await this.db.collection('users').doc(id).collection('saved').doc(this.dataIn.id).set({
                                 title: data.event,
+                                time: firebase.firestore.FieldValue.serverTimestamp(),
                                 lj: this.dataIn.lj,
                                 sp: this.dataIn.sp,
                                 hj: this.dataIn.hj,
@@ -88,6 +91,7 @@ export class FPentathlonPage implements OnInit, OnDestroy {
                             // add new event
                             await this.db.collection('users').doc(id).collection('saved').add({
                                 title: data.event,
+                                time: firebase.firestore.FieldValue.serverTimestamp(),
                                 lj: this.dataIn.lj,
                                 sp: this.dataIn.sp,
                                 hj: this.dataIn.hj,
@@ -163,6 +167,7 @@ export class FPentathlonPage implements OnInit, OnDestroy {
         // edit
         await this.db.collection('users').doc(id).collection('saved').doc(this.dataIn.id).set({
             title: this.dataIn.title,
+            time: firebase.firestore.FieldValue.serverTimestamp(),
             lj: this.dataIn.lj,
             sp: this.dataIn.sp,
             hj: this.dataIn.hj,

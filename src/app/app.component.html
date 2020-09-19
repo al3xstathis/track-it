@@ -56,18 +56,19 @@
 
                         <ion-list *ngIf="e.children?.length>0" [class.child-open]="e.open"
                                   [class.child-closed]="!e.open">
-                                <ion-item mode="md" color="none" lines="none" *ngFor="let child of e.children"
-                                          routerDirection="root" [routerLink]="[child.url]" (click)="e.open=!e.open"
-                                          class="child">
-                                    <ion-label>{{ child.title }}</ion-label>
-                                </ion-item>
+                            <ion-item mode="md" color="none" lines="none" *ngFor="let child of e.children"
+                                      routerDirection="root" [routerLink]="[child.url]" (click)="e.open=!e.open"
+                                      class="child">
+                                <ion-label>{{ child.title }}</ion-label>
+                            </ion-item>
                         </ion-list>
 
 
-                            <ion-item *ngIf="e.url && !e.children" lines="none" routerDirection="root" [routerLink]="[e.url]" class="parent"
-                                      color="none" detail="false">
-                                <ion-label>{{ e.title }}</ion-label>
-                            </ion-item>
+                        <ion-item *ngIf="e.url && !e.children" lines="none" routerDirection="root"
+                                  [routerLink]="[e.url]" class="parent"
+                                  color="none" detail="false">
+                            <ion-label>{{ e.title }}</ion-label>
+                        </ion-item>
 
 
                     </ion-list>
@@ -77,14 +78,33 @@
 
 
             </ion-content>
-            <ion-footer>
+            <ion-footer class="option-list-phone">
                 <ion-row>
                     <ion-col class="darkToggle" size="6" style="display: flex; align-items: center">
-                        Dark Mode
+                        Settings
                     </ion-col>
                     <ion-col class="darkToggle" size="6" style="text-align: right">
-                        <ion-toggle [(ngModel)]="isDark"
-                                    (ionChange)="darkModeToggle($event.detail.checked)"></ion-toggle>
+                        <ion-menu-toggle>
+                            <ion-button color="dark" routerDirection="root" routerLink="/settings" size="large"
+                                        class="no-shadow">
+                                <ion-icon name="settings-outline"></ion-icon>
+                            </ion-button>
+                        </ion-menu-toggle>
+                    </ion-col>
+                </ion-row>
+            </ion-footer>
+            <ion-footer class="option-list-tablet-computer">
+                <ion-row>
+                    <ion-col class="darkToggle" size="6" style="display: flex; align-items: center">
+                        Settings
+                    </ion-col>
+                    <ion-col class="darkToggle" size="6" style="text-align: right">
+
+                        <ion-button color="dark" routerDirection="root" routerLink="/settings" size="large"
+                                    class="no-shadow">
+                            <ion-icon name="settings-outline"></ion-icon>
+                        </ion-button>
+
                     </ion-col>
                 </ion-row>
             </ion-footer>
