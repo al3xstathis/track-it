@@ -10,30 +10,36 @@
             <a>Register</a>
         </div>
 
-        <div class="email">
-            <ion-input type="email" placeholder="Email" [(ngModel)]="email"></ion-input>
-        </div>
 
-        <div class="password">
-            <ion-input type="password" placeholder="Password" [(ngModel)]="password"></ion-input>
-        </div>
+            <div class="email">
+                <ion-input type="email" placeholder="Email" [(ngModel)]="email" ></ion-input>
+            </div>
 
-        <div class="registerButton">
-            <ion-button   fill="outline" expand="block" (click)="registerEmail()">Register</ion-button>
-        </div>
+            <div class="password">
+                <ion-input type="password" placeholder="Password" [(ngModel)]="password" ></ion-input>
+            </div>
 
-        <div class="googleButton">
-            <ion-button expand="block" fill="outline"  (click)="registerGoogle()"> Register With Google
-                <ion-icon name="logo-google" slot="start">   </ion-icon>
-            </ion-button>
-        </div>
+            <div class="registerButton">
+                <ion-button fill="outline" expand="block" (click)="registerEmail()">Register</ion-button>
+            </div>
+
+            <div class="googleButton">
+                <ion-button expand="block" fill="outline" (click)="registerGoogle()"> Register With Google
+                    <ion-icon name="logo-google" slot="start"></ion-icon>
+                </ion-button>
+            </div>
+
+
+<!--        <div class="firebase">-->
+<!--            <firebase-ui></firebase-ui>-->
+<!--        </div>-->
 
         <div class="login">
             <p>Already have an account ?</p>
         </div>
 
         <div class="loginButton">
-            <ion-button expand="block" fill="outline"  routerLink="/login">Login</ion-button>
+            <ion-button expand="block" fill="outline" routerLink="/login">Login</ion-button>
         </div>
 
     </div>

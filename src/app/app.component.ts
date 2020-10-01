@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 
-import {MenuController, Platform} from '@ionic/angular';
+import {IonRouterOutlet, MenuController, Platform} from '@ionic/angular';
 import {SplashScreen} from '@ionic-native/splash-screen/ngx';
 import {StatusBar} from '@ionic-native/status-bar/ngx';
 import {AngularFireAuth} from '@angular/fire/auth';
@@ -71,7 +71,7 @@ export class AppComponent implements OnInit {
         private fireAuth: AngularFireAuth,
         private router: Router,
         private menuCtrl: MenuController,
-        private swUpdate: SwUpdate
+        private swUpdate: SwUpdate,
     ) {
         this.initializeApp();
         window.addEventListener('beforeinstallprompt', (e) => {
@@ -79,8 +79,7 @@ export class AppComponent implements OnInit {
             e.preventDefault();
             // Stash the event so it can be triggered later.
             this.deferredPrompt = e;
-            // Update UI notify the user they can install the PWA
-            this.showInstallPromotion();
+
         });
 
         if ('serviceWorker' in navigator) {
@@ -109,10 +108,6 @@ export class AppComponent implements OnInit {
         } else {
             console.log('No service-worker on this browser');
         }
-    }
-
-    showInstallPromotion() {
-
     }
 
     initializeApp() {
@@ -157,6 +152,7 @@ export class AppComponent implements OnInit {
     }
 
     ngOnInit() {
+
 
         if (this.swUpdate.isEnabled) {
 

@@ -30,3 +30,7 @@ npm-debug.log*
 /plugins
 /www
 /src/environments
+.gradle
+GoogleService-Info.plist
+google-services.json
+track-it.apk

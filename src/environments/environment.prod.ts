@@ -1,8 +1,5 @@
 export const environment = {
-  production: true
-};
-
-export const firebaseConfig = {
+  production: true,
   apiKey: 'AIzaSyB9o4iKgO4I5ENBOjsqt3j7oiK_mYDvBxg',
   authDomain: 'track-it-prod.firebaseapp.com',
   databaseURL: 'https://track-it-prod.firebaseio.com',
@@ -10,6 +7,10 @@ export const firebaseConfig = {
   storageBucket: 'track-it-prod.appspot.com',
   messagingSenderId: '401315847279',
   appId: '1:401315847279:web:0a7fa20fb9d674591e019a',
-  measurementId: 'G-FMV8MKWWNX'
+  measurementId: 'G-FMV8MKWWNX',
+  // webClientId: '401315847279-rvgr22aob0cjktd0aepscviuocl59r18.apps.googleusercontent.com'
+};
+
+export const firebaseConfig = {
 };
 

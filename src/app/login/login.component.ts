@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../services/auth.service';
 import {AngularFireAuth} from '@angular/fire/auth';
-import {AlertController} from '@ionic/angular';
+import {AlertController, IonRouterOutlet} from '@ionic/angular';
 
 @Component({
     selector: 'app-login',
@@ -14,7 +14,8 @@ export class LoginComponent implements OnInit {
 
     constructor(public auth: AuthService,
                 private fireAuth: AngularFireAuth,
-                private alertCtrl: AlertController) {
+                private alertCtrl: AlertController,
+                private router: IonRouterOutlet) {
 
     }
 
@@ -53,6 +54,7 @@ export class LoginComponent implements OnInit {
     }
 
     ngOnInit() {
+
     }
 
 }

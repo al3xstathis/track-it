@@ -1,7 +1,8 @@
 {
-  "name": "storemark",
+  "name": "Track-it",
   "integrations": {
-    "cordova": {}
+    "cordova": {},
+    "capacitor": {}
   },
   "type": "angular",
   "id": "d629231e"

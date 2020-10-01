@@ -1,51 +1,52 @@
-
 <ion-content color="dark" fullscreen>
 
 
+    <div class="container">
 
+        <div class="trackit">
+            <a>Track-it</a>
+        </div>
 
+        <div class="login">
+            <a>Login</a>
+        </div>
 
-  <div class="container">
+        <!--                <form class="form">-->
+        <div class="email">
+            <ion-input type="email" placeholder="Email" [(ngModel)]="email"></ion-input>
+        </div>
 
-    <div class="trackit">
-      <a>Track-it</a>
+        <div class="password">
+            <ion-input type="password" placeholder="Password" [(ngModel)]="password"></ion-input>
+        </div>
+        <div class="resetButton">
+            <ion-button fill="outline" expand="block" (click)="forgotPass()">Forgot password?</ion-button>
+        </div>
+
+        <div class="loginButton">
+            <ion-button fill="outline" expand="block" (click)="loginEmail()">Login</ion-button>
+        </div>
+        <!--                </form>-->
+        <!--        <div class="firebase">-->
+        <!--            <firebase-ui></firebase-ui>-->
+        <!--        </div>-->
+
+        <div class="googleButton">
+            <ion-button expand="block" fill="outline" (click)="loginGoogle()"> Login With Google
+                <ion-icon name="logo-google" slot="start"></ion-icon>
+            </ion-button>
+        </div>
+
+        <div class="register">
+            <p>Don't have an account ?</p>
+        </div>
+
+        <div class="registerButton">
+            <ion-button expand="block" fill="outline" routerLink="/register" routerDirection="back">Register
+            </ion-button>
+        </div>
+
     </div>
-
-    <div class="login">
-      <a>Login</a>
-    </div>
-
-    <div class="email">
-      <ion-input type="email" placeholder="Email" [(ngModel)]="email"></ion-input>
-    </div>
-
-    <div class="password">
-      <ion-input type="password" placeholder="Password" [(ngModel)]="password"></ion-input>
-    </div>
-    <div class="resetButton">
-      <ion-button  fill="outline" expand="block"  (click)="forgotPass()">Forgot password?</ion-button>
-    </div>
-
-    <div class="loginButton">
-      <ion-button  fill="outline" expand="block"  (click)="loginEmail()">Login</ion-button>
-    </div>
-
-    <div class="googleButton">
-      <ion-button expand="block" fill="outline"  (click)="loginGoogle()"> Login With Google
-        <ion-icon name="logo-google" slot="start"></ion-icon>
-      </ion-button>
-    </div>
-
-    <div class="register">
-      <p>Don't have an account ?</p>
-    </div>
-
-    <div class="registerButton">
-      <ion-button expand="block" fill="outline"  routerLink="/register" routerDirection="back">Register</ion-button>
-    </div>
-
-  </div>
-
 
 
 </ion-content>
