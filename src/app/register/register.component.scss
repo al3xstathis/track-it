@@ -78,8 +78,11 @@ ion-button {
 }
 
 .googleButton {
-  grid-column: 2;
-  grid-row: 11;
+    grid-column: 2;
+    grid-row: 11;
+    font-size: 14px;
+    color: grey;
+    justify-self: center;
 }
 
 .login {

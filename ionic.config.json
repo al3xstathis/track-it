@@ -1,8 +1,7 @@
 {
   "name": "Track-it",
   "integrations": {
-    "cordova": {},
-    "capacitor": {}
+    "cordova": {}
   },
   "type": "angular",
   "id": "d629231e"
