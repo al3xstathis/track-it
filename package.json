@@ -24,6 +24,9 @@
     "@angular/router": "~8.2.14",
     "@angular/service-worker": "~8.2.14",
     "@babel/compat-data": "^7.11.0",
+    "@capacitor/android": "^2.4.2",
+    "@capacitor/core": "2.4.2",
+    "@capacitor/ios": "^2.4.2",
     "@google-cloud/firestore": "^3.8.6",
     "@ionic-native/core": "^5.28.0",
     "@ionic-native/firebase": "^5.28.0",
@@ -41,7 +44,6 @@
     "cordova-ios": "^6.1.0",
     "cordova-plugin-advanced-http": "^3.0.1",
     "cordova-plugin-file": "^6.0.2",
-    "cordova-plugin-firebase": "^2.0.5",
     "cordova-plugin-firebase-analytics": "^4.4.1",
     "cordova-plugin-firebase-authentication": "^3.3.1",
     "cordova-plugin-googleplus": "^8.5.0",
@@ -95,12 +97,8 @@
   "cordova": {
     "plugins": {
       "cordova-plugin-whitelist": {},
-      "cordova-plugin-statusbar": {},
       "cordova-plugin-device": {},
-      "cordova-plugin-splashscreen": {},
-      "cordova-plugin-ionic-keyboard": {},
       "cordova-sqlite-storage": {},
-      "cordova-plugin-ionic-webview": {},
       "cordova-plugin-advanced-http": {},
       "cordova-plugin-googleplus": {
         "REVERSED_CLIENT_ID": "com.googleusercontent.apps.401315847279-01jmgfhv8bdsf9ecb6irf00b807ofvae",

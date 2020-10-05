@@ -31,7 +31,7 @@ npm-debug.log*
 /www
 /src/environments
 .gradle
-GoogleService-Info.plist
+ios/App/GoogleService-Info.plist
 google-services.json
 track-it.apk
 track-it.aab
