@@ -18,6 +18,7 @@ export class IaafPage implements OnInit {
     public selectedEvent = 0;
     public perf = '';
     public score = '';
+    public age = '0';
 
     public menEventsOutdoor: any = [
         {
@@ -550,19 +551,19 @@ export class IaafPage implements OnInit {
 
         await alert.present();
     }
-
+    // this.comparedToString()
 
     async getScore(type: number) {
         if (type === 1) {
             await this.avs.getScore(this.sexe.toString(), this.season, this.perf, this.selectedEvent.toString(),
-                type.toString(), this.comparedToString());
+                type.toString(), '', '0');
             setTimeout(a => {
                 this.parseScore();
             }, 500);
         }
         if (type === 2) {
             await this.avs.compareScore(this.sexe.toString(), this.season, this.perf, this.selectedEvent.toString(),
-                type.toString(), this.comparedToString(), this.score);
+                type.toString(), this.comparedToString(), this.score, '0');
             setTimeout(a => {
                 this.parseCompare();
             }, 500);
