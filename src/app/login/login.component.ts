@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../services/auth.service';
 import {AngularFireAuth} from '@angular/fire/auth';
-import {AlertController, IonRouterOutlet} from '@ionic/angular';
+import {AlertController, IonRouterOutlet, Platform} from '@ionic/angular';
 
 @Component({
     selector: 'app-login',
@@ -11,12 +11,14 @@ import {AlertController, IonRouterOutlet} from '@ionic/angular';
 export class LoginComponent implements OnInit {
     email: string;
     password: string;
+    appleDevice: boolean;
 
     constructor(public auth: AuthService,
                 private fireAuth: AngularFireAuth,
                 private alertCtrl: AlertController,
-                private router: IonRouterOutlet) {
-
+                private router: IonRouterOutlet,
+                private platform: Platform) {
+        this.appleDevice = this.platform.is('ios');
     }
 
     async presentAlert() {
@@ -53,6 +55,9 @@ export class LoginComponent implements OnInit {
         this.auth.SignInWithGoogle();
     }
 
+    loginApple() {
+        this.auth.signInWithApple();
+    }
     ngOnInit() {
 
     }

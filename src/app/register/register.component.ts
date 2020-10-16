@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../../services/auth.service';
+import {IonRouterOutlet, Platform} from '@ionic/angular';
 
 @Component({
   selector: 'app-register',
@@ -9,8 +10,11 @@ import {AuthService} from '../../services/auth.service';
 export class RegisterComponent implements OnInit {
   email: string;
   password: string;
+  appleDevice: boolean;
 
-  constructor(public auth: AuthService) {
+  constructor(public auth: AuthService,
+              private platform: Platform) {
+    this.appleDevice = this.platform.is('ios');
   }
 
   registerEmail() {
@@ -21,6 +25,9 @@ export class RegisterComponent implements OnInit {
 
   registerGoogle() {
     this.auth.SignInWithGoogle();
+  }
+  registerApple() {
+    this.auth.signInWithApple();
   }
 
 

@@ -108,6 +108,22 @@ export class AuthService {
         }
     }
 
+    async signInWithApple() {
+        try {
+            const provider = new firebase.auth.OAuthProvider('apple.com');
+            await this.fireAuth.signInWithPopup(provider)
+                .then(async res => {
+                    await this.presentToast('You\'ve signed in with Apple!');
+                    this.db.collection('users').doc(res.user.uid).set({
+                        email: res.user.email,
+                        UID: res.user.uid
+                    }).then();
+                });
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
     SignOut() {
         this.fireAuth
             .signOut();

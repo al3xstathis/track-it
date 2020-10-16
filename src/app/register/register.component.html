@@ -11,28 +11,33 @@
         </div>
 
 
-            <div class="email">
-                <ion-input type="email" placeholder="Email" [(ngModel)]="email" ></ion-input>
-            </div>
+        <div class="email">
+            <ion-input type="email" placeholder="Email" [(ngModel)]="email"></ion-input>
+        </div>
 
-            <div class="password">
-                <ion-input type="password" placeholder="Password" [(ngModel)]="password" ></ion-input>
-            </div>
+        <div class="password">
+            <ion-input type="password" placeholder="Password" [(ngModel)]="password"></ion-input>
+        </div>
 
-            <div class="registerButton">
-                <ion-button fill="outline" expand="block" (click)="registerEmail()">Register</ion-button>
-            </div>
+        <div class="registerButton">
+            <ion-button fill="outline" expand="block" (click)="registerEmail()">Register</ion-button>
+        </div>
 
-            <div class="googleButton">
-                <ion-button color="none" (click)="registerGoogle()"> Register with Google
-                    <ion-icon size="large" name="google" slot="start"></ion-icon>
-                </ion-button>
-            </div>
+        <div class="googleButton">
+            <ion-button color="none" (click)="registerGoogle()"> Register with Google
+                <ion-icon size="large" name="google" slot="start"></ion-icon>
+            </ion-button>
+        </div>
+        <div class="AppleButton" *ngIf="appleDevice == true">
+            <ion-button  color="none" (click)="registerApple()"> Sign in with Apple
+                <ion-icon size="small" name="logo-apple" slot="start"></ion-icon>
+            </ion-button>
+        </div>
 
 
-<!--        <div class="firebase">-->
-<!--            <firebase-ui></firebase-ui>-->
-<!--        </div>-->
+        <!--        <div class="firebase">-->
+        <!--            <firebase-ui></firebase-ui>-->
+        <!--        </div>-->
 
         <div class="login">
             <p>Already have an account ?</p>

@@ -36,6 +36,11 @@
                 <ion-icon size="large" name="google" slot="start"></ion-icon>
             </ion-button>
         </div>
+        <div class="AppleButton" *ngIf="appleDevice == true">
+            <ion-button color="none" (click)="loginApple()" > Sign in with Apple
+                <ion-icon size="small" name="logo-apple" slot="start"></ion-icon>
+            </ion-button>
+        </div>
 
         <div class="register">
             <p>Don't have an account ?</p>
