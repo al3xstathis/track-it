@@ -46,7 +46,6 @@ export class AuthService {
                     ' is valid and password is at least 6 characters');
                 console.log(error.message);
             });
-
     }
 
     SignIn(email: string, password: string) {
